@@ -44,13 +44,13 @@ app.get('/movies', (req, res) => {
 
 
 
-app.get('/getMovieByActor/:value', async (req, res) => {
-    let value = req.params.value;
+app.get('/getMovieByActor/:actorName', async (req, res) => {
+    let actorName = req.params.actorName;
     let nAc = []
 
 
     var filteredArray = await movie.filter(element => element.actors
-        .some(subElement => subElement.toLowerCase() === value.toLowerCase())
+        .some(subElement => subElement.toLowerCase() === actorName.toLowerCase())
     ).map(element => {
         nAc.push(element)
     })
@@ -63,10 +63,6 @@ app.get('/getMovieByActor/:value', async (req, res) => {
         SD: standardDev,
         mean: gMean
     })
-
-    // setTimeout(() => {
-
-    // }, 2000);
 
 })
 app.get('/getMovieByUrl/:url', async (req, res) => {
@@ -88,11 +84,11 @@ app.get('/top50', async (req, res) => {
     })
 })
 
-app.get('/getMovieByYear/:value', async (req, res) => {
-    let value = req.params.value;
+app.get('/getMovieByYear/:year', async (req, res) => {
+    let year = req.params.year;
     let dir = []
 
-    var filteredArray = await movie.filter(element => element.year === value.toLowerCase())
+    var filteredArray = await movie.filter(element => element.year === year.toLowerCase())
 
     return res.status(200).json({
         error: false,
