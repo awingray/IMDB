@@ -1,14 +1,29 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 2000;
 const movie = require('./asset/movie.json');
+const {
+    median,
+    getStandardDeviation,
+    getMean,
+    sortData,
+    ratedMovie
+} = require('./utility/helper')
+
+//This is just to run a test that the coding is working fine
+
+app.use(bodyParser.urlencoded({
+    extended: false,
+    limit: '5mb'
+}));
 
 app.get('/', (req, res) => {
     res.send('Alive');
 })
 
+//
 app.get('/allActors', async (req, res) => {
-
     let newArr = [];
     for (let arr of movie) {
         newArr.push(...arr.actors);
@@ -21,9 +36,6 @@ app.get('/allActors', async (req, res) => {
 })
 
 app.get('/movies', (req, res) => {
-    // let page = req.body.page || 20
-    // let size = req.body.size || 0;
-
     return res.status(200).json({
         error: false,
         movie: movie.splice(0, 20)
@@ -31,30 +43,30 @@ app.get('/movies', (req, res) => {
 })
 
 
-function sortData(a, b) {
-    return new Date(a.year).getTime() - new Date(b.year).getTime();
-}
 
-
-app.get('/getMovieByActor/:value', (req, res) => {
+app.get('/getMovieByActor/:value', async (req, res) => {
     let value = req.params.value;
     let nAc = []
 
 
-    var filteredArray = movie.filter(element => element.actors
+    var filteredArray = await movie.filter(element => element.actors
         .some(subElement => subElement.toLowerCase() === value.toLowerCase())
     ).map(element => {
-
-
-        console.log('===', element)
         nAc.push(element)
     })
+    let aMedian = await median(nAc.sort(sortData))
+    let standardDev = await getStandardDeviation(nAc.sort(sortData))
+    let gMean = await getMean(nAc.sort(sortData))
+    return res.status(200).json({
+        movies: nAc.sort(sortData),
+        median: aMedian,
+        SD: standardDev,
+        mean: gMean
+    })
 
-    setTimeout(() => {
+    // setTimeout(() => {
 
-        return res.status(200).send(nAc.sort(sortData))
-
-    }, 3000);
+    // }, 2000);
 
 })
 app.get('/getMovieByUrl/:url', async (req, res) => {
@@ -66,9 +78,6 @@ app.get('/getMovieByUrl/:url', async (req, res) => {
     })
 })
 
-function ratedMovie(a, b) {
-    return parseFloat(b.users_rating) - parseFloat(a.users_rating);
-}
 
 app.get('/top50', async (req, res) => {
     let rated = await movie.sort(ratedMovie).slice(0, 50)
@@ -92,6 +101,83 @@ app.get('/getMovieByYear/:value', async (req, res) => {
 
 })
 
+
+app.post('/allRounder', async (req, res) => {
+
+    if (!req.body.actorName || req.body.actorName === "" || req.body.actorName === undefined) {
+        return res.status(400).json({
+            error: true,
+            message: "actorName is required"
+        })
+    }
+    if (!req.body.url || req.body.url === "" || req.body.url === undefined) {
+        return res.status(400).json({
+            error: true,
+            message: "url is required"
+        })
+    }
+    if (!req.body.year || req.body.year === "" || req.body.year === undefined) {
+        return res.status(400).json({
+            error: true,
+            message: "year is required"
+        })
+    }
+    let actorName = req.body.actorName;
+    let movieUrl = req.body.url;
+    let movieYear = req.body.year;
+
+    let newArr = [];
+    for (let arr of movie) {
+        //Loop through all the movies array and push all the actors to one array
+        newArr.push(...arr.actors);
+    }
+
+    let allActors = [...new Set(newArr)] //This returns all the actors, using Set makes sure we don't 
+    //have more than one occurence for each actors
+
+    let value = actorName;
+    let nAc = []
+
+
+    var filteredArray = await movie.filter(element => element.actors
+        .some(subElement => subElement.toLowerCase() === value.toLowerCase())
+    ).map(element => {
+        nAc.push(element)
+    })
+    let aMedian = await median(nAc.sort(sortData))
+    let standardDev = await getStandardDeviation(nAc.sort(sortData))
+    let gMean = await getMean(nAc.sort(sortData))
+
+    //Get movie by splitting the url by / and getting the second to the last element that returns the unique part of the string
+    let y = await movie.filter(item => item.imdb_url.split('/')[4] === movieUrl)
+    //return res.status(200).json({error: false, movie:y}) 
+
+    let year = req.body.year;
+    let dir = []
+
+    var filteredArray = await movie.filter(element => element.year === movieYear.toLowerCase())
+
+    //   return res.status(200).json({error: false, movie: filteredArray.sort(ratedMovie)})
+
+
+    let rated = await movie.sort(ratedMovie).slice(0, 50)
+    //    return res.status(200).json({error: false, movie:rated})
+    // return res.status(200).json({movies:nAc.sort(sortData), median:aMedian, SD: standardDev,mean:gMean})
+
+    return res.status(200).json({
+        error: false,
+        actors: allActors,
+        actor_statistics: {
+            median: aMedian,
+            SD: standardDev,
+            mean: gMean
+        },
+        movie_year: filteredArray.sort(ratedMovie),
+        rated_50: rated
+
+    })
+
+})
 app.listen(PORT, () => {
     console.log(`App listening on ${PORT}`)
 })
