@@ -75,8 +75,8 @@ app.get('/getMovieByUrl/:url', async (req, res) => {
 })
 
 
-app.get('/top50', async (req, res) => {
-    let rated = await movie.sort(ratedMovie).slice(0, 50)
+app.get('/top/:len', async (req, res) => {
+    let rated = await movie.sort(ratedMovie).slice(0, req.params.len)
 
     return res.status(200).json({
         error: false,

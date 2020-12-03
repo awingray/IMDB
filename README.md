@@ -3,7 +3,7 @@ This is your group repository for the Web Engineering project
 
 
 # M1: API Design
-The following diagram shows how the data in sorted in this api.
+The following diagram shows how the data is sorted in this api.
 
 ![UML Diagram](images/api_uml.png)
 
