@@ -2,7 +2,7 @@
 This is your group repository for the Web Engineering project
 
 
-# M1: API Design
+## API Design
 The following diagram shows how the data is sorted in this api.
 
 ![UML Diagram](images/api_uml.png)
@@ -13,3 +13,6 @@ The following diagram shows how the data is sorted in this api.
 - *Movie* is a single movie in the dataset. A movie has multiple actors and directors.
 - *Directors* is the collection of all directors in the dataset.
 - *Director* is an individual director in the dataset. A director directed multiple moives.
+
+## Documentation
+See documentation [here](https://documenter.getpostman.com/view/13748815/TVmQcad3).
