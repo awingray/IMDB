@@ -1,7 +1,7 @@
 # This is a "wishful" development of the backend side of things. 
 ## Ignore the server folder
 
-### create a blank file called:   .env    
+### (if doesnt exist) create a blank file called:   .env    
 #### and put in:
 
 ```
