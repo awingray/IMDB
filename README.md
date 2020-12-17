@@ -10,8 +10,7 @@
   NODE_ENV=development
   DB_URL=mongodb+srv://admin:admin@cluster0.6vb9c.mongodb.net/imdb?retryWrites=true&w=majority
 ```
-
-Then:
+### Save and then:
 
 
 Run "node server.js" 
