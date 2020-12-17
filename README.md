@@ -27,4 +27,4 @@ folder: database -> mvc of the app\
   folder: database/models -> models for everything in the app (actors/movies/uesrs etc.)
   
   
-    the "actors" shall be just "person" just to simplify with all individuals (unifying directors/extra/etc.)
+    the "actors" shall be "persons" just to simplify with all individuals (unifying directors/extra/etc.)
