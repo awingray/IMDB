@@ -1,7 +1,9 @@
-This is a "wishful" development of the backend side of things. Ignore the server folder.
+# This is a "wishful" development of the backend side of things. Ignore the server folder.
 
 
-create a file called .env and put in:
+create a blank file called:   .env
+and put in:
+
 ```
 
   PORT=4000
