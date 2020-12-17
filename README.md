@@ -19,7 +19,7 @@ Run "node server.js"
 ## Whats up with all the folders and files?
 
 folder: routes -> for endpoints hence "routes"\
-folder: helpers -> any cool functions that can be used e.g. stats calculations/visuals etc.     see utility folder of the first iteration,\
+folder: helpers -> any cool functions that can be used e.g. stats calculations/visuals etc.     see utility folder from the first backend iteration,\
 folder: core -> anything common with the mainline that will be referenced a lot (probably shouldnt touch atm)\
 folder: database -> mvc of the app\
   folder: database/config -> configs for connecting to the cloud mongo db (dont touch this) \
