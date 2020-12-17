@@ -24,7 +24,7 @@ folder: core -> anything common with the mainline that will be referenced a lot 
 folder: database -> mvc of the app\
   folder: database/config -> configs for connecting to the cloud mongo db (dont touch this) \
   folder: database/controllers -> all functionalities here\
-  folder: database/models -> models for everything in the app (currently actors/movies/uesrs etc.)
+  folder: database/models -> models for everything in the app (actors/movies/uesrs etc.)
   
   
     the "actors" shall be just "person" just to simplify with all individuals (unifying directors/extra/etc.)
