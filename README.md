@@ -20,11 +20,11 @@ Run "node server.js"
 
 folder: routes -> for endpoints hence "routes"\
 folder: helpers -> any cool functions that can be used e.g. stats calculations/visuals etc.     see utility folder of the first iteration,\
-folder: core -> anything common with the mainline that will be referenced a lot\
+folder: core -> anything common with the mainline that will be referenced a lot (probably shouldnt touch atm)\
 folder: database -> mvc of the app\
-  folder: database/config -> configs for connecting to the cloud mongo db\
+  folder: database/config -> configs for connecting to the cloud mongo db (dont touch this) \
   folder: database/controllers -> all functionalities here\
-  folder: database/models -> models for everything in the app (currently "actors" and "movies")     \
+  folder: database/models -> models for everything in the app (currently actors/movies/uesrs etc.)
   
   
     the "actors" shall be just "person" just to simplify with all individuals (unifying directors/extra/etc.)
