@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dc332bcb-50d6-43de-973c-901a99eb0f27" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/asset/_movie.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/asset/_movie.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/asset/movie.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/asset/movie.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/asset/movie.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/awin.postman_collection.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/utility/helper.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.eslintcache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/ActosItem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MovieItem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Navbar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Pagination.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/SearchResult.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Tags.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/pages/AllMovies.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/setupTests.js" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1l72ayQ8xG1UmX5PIaPOUydzPwQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dc332bcb-50d6-43de-973c-901a99eb0f27" name="Default Changelist" comment="" />
+      <created>1606933875999</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606933875999</updated>
+      <workItem from="1606933882408" duration="497000" />
+      <workItem from="1607105125024" duration="1171000" />
+      <workItem from="1607116913370" duration="30000" />
+      <workItem from="1607117832505" duration="225000" />
+      <workItem from="1608294759845" duration="1968000" />
+      <workItem from="1608305569726" duration="1248000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>
