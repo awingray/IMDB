@@ -1,6 +1,9 @@
 #just for the branch
 server
 
+# for webstorm users 
+.idea/*
+.idea 
 
 # Logs
 logs
