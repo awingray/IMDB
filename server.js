@@ -47,9 +47,13 @@ app.use(function (req, res, next) {
 });
 
 // Imports routes
-var movie_routes = require("./src/routes/v1/movie/movie.route");
+const movie_routes = require("./src/routes/v1/movie/movie.route");
+const actor_routes = require("./src/routes/v1/actor/actor.route");
+const director_routes = require("./src/routes/v1/director/director.route");
 
 //Register Routes
 app.use("/api/movies", movie_routes);
+app.use("/api/actors", actor_routes);
+app.use("/api/directors", director_routes);
 
 app.listen(port, () => `Server running on port ${port}`);

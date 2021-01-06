@@ -19,6 +19,6 @@ const MovieSchema = new Schema({
     runtime: String,
     imdb_url: String,
     
-});
+}).index({title: 1, year: 2, users_rating: 3});
 
 module.exports = mongoose.model('Movie', MovieSchema);
