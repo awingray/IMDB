@@ -2,6 +2,8 @@ import './App.css';
 import Navbar from './components/Navbar';
 import AllMovies from './pages/AllMovies';
 import AddMovie from './pages/AddMovie'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 
 function App() {
   return (
