@@ -41,6 +41,8 @@
     "passport-local": "^1.0.0",
     "plaid": "^8.1.0",
     "qs": "^6.9.4",
+    "react-dropdown": "^1.9.1",
+    "react-select": "^3.2.0",
     "request-ip": "^2.1.3"
   }
 }
