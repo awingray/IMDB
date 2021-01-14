@@ -1,4 +1,5 @@
 const Joi = require('joi');
+const errorCode = require('../config/error_codes')
 
 /**
  * Generalized helper function used for validation.
@@ -9,11 +10,7 @@ const Joi = require('joi');
 function check(userInput, errorName, ...schemas) {
     let concatSchemas = schemas.reduce((a, b) => a.concat(b), Joi.object().keys({}));
     let {error} = concatSchemas.validate(userInput);
-    if (error) {
-        let newError = Error(error.details[0].message);
-        newError.name = errorName;
-        throw newError;
-    }
+    if (error) throw errorCode.makeError(errorName, error.details[0].message);
 }
 
 /**

@@ -33,9 +33,7 @@ async function getMovieList({page = 0, perPage = 10, sort = 'title', name, year,
     try {
         return await Movie.find(filters).limit(Number(perPage)).skip(perPage * page).sort({[sort]: 'asc'});
     } catch (error) {
-        let newError = Error('database query failed');
-        newError.name = 'DatabaseError';
-        throw newError;
+        throw errorCode.makeError('DatabaseError', 'database query failed');
     }
 }
 
@@ -64,11 +62,7 @@ exports.searchMovies = async function (req, res) {
  */
 async function getMovie({id}) {
     let movie = await Movie.findById(id);
-    if (!movie) {
-        let newError = Error("movie doesn't exist");
-        newError.name = 'PathError';
-        throw newError;
-    }
+    if (!movie) throw errorCode.makeError('PathError', 'movie doesn\'t exist');
     return movie;
 }
 
@@ -97,11 +91,7 @@ exports.movieDetails = async function (req, res) {
  */
 async function deleteMovie({id}) {
     let movie = await Movie.findByIdAndDelete(id);
-    if (!movie) {
-        let newError = Error("movie doesn't exist");
-        newError.name = 'PathError';
-        throw newError;
-    }
+    if (!movie) throw errorCode.makeError('PathError', 'movie doesn\'t exist');
     return movie;
 }
 
@@ -131,11 +121,7 @@ exports.removeMovie = async function (req, res) {
  */
 async function updateMovie({id}, update) {
     let movie = await Movie.findByIdAndUpdate(id, update);
-    if (!movie) {
-        let newError = Error("movie doesn't exist");
-        newError.name = 'PathError';
-        throw newError;
-    }
+    if (!movie) throw errorCode.makeError('PathError', 'movie doesn\'t exist');
     return movie;
 }
 
@@ -169,9 +155,7 @@ async function addMovie(data) {
         await movie.save();
         return movie;
     } catch (error) {
-        let newError = Error('database creation failed');
-        newError.name = 'DatabaseError';
-        throw newError;
+        throw errorCode.makeError('DatabaseError', 'database creation failed');
     }
 }
 
@@ -214,9 +198,7 @@ async function getDistribution({name, year, genre}) {
 
         return distribution;
     } catch (error) {
-        let newError = Error('database query failed');
-        newError.name = 'DatabaseError';
-        throw newError;
+        throw errorCode.makeError('DatabaseError', 'database query failed');
     }
 }
 

@@ -1,3 +1,5 @@
+const errorCode = require('../database/config/error_codes');
+
 /**
  * This function sends a response to the user in case of success.
  * @param res The response to the user.
@@ -20,20 +22,14 @@ function sendSuccess(res, {status, message}, result) {
  */
 function sendError(res, error) {
     console.log(error);
-    switch (error.name) {  // TODO save error codes in error_codes.json
-        case 'DatabaseError':
-            return res.status(500).send({status: 0, message:error.message});
-        case 'BodyValidationError':
-            return res.status(422).send({status: 0, message:error.message});
-        case 'PathValidationError':
-            return res.status(404).send({status: 0, message:error.message});
-        case 'PathError':
-            return res.status(404).send({status: 0, message:error.message});
-        case 'QueryValidationError':
-            return res.status(400).send({status: 0, message:error.message});
-        default:
-            return res.status(501).send({status: 0, message:'Unexpected Error Occurred'});
-    }
+    if (errorCode[error.name]) return res.status(errorCode[error.name]).send({
+        status: 0,
+        message:error.message
+    });
+    return res.status(errorCode['Default']).send({
+        status: 0,
+        message: 'Unexpected Error Occurred'
+    });
 }
 
 module.exports = {
