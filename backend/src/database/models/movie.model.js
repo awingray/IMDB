@@ -1,6 +1,9 @@
-  const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+/**
+ * How movies are stored in mongoose database.
+ */
 const MovieSchema = new Schema({
     title: String,
     rating: String,
@@ -18,7 +21,6 @@ const MovieSchema = new Schema({
     directors: Array,
     runtime: String,
     imdb_url: String,
-    
 }).index({title: 1, year: 2, users_rating: 3});
 
 module.exports = mongoose.model('Movie', MovieSchema);

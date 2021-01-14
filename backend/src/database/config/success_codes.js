@@ -1,4 +1,7 @@
 module.exports = {
+  /**
+   * Success statuses and messages for different operations in the api.
+   */
   "search": {
     "status": 200,
     "message": "Search Successful"

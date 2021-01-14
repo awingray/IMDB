@@ -1,4 +1,6 @@
 const Joi = require('joi');
+
+// used to throw errors when validation checks fail
 const errorCode = require('../config/error_codes')
 
 /**

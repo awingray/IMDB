@@ -10,6 +10,10 @@ module.exports = {
         error.message = message;
         return error;
     },
+
+    /**
+     * Error codes for different errors that occur in the api.
+     */
     "DatabaseError" : 500,
     "BodyValidationError" : 422,
     "PathValidationError": 404,

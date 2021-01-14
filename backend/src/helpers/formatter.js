@@ -1,3 +1,4 @@
+// Stats used to compute stats as they are formatted
 const stats = require('./statistics');
 
 /**

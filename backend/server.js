@@ -1,12 +1,12 @@
-var compression = require("compression");
+const compression = require("compression");
 const express = require("express");
-var bodyParser = require("body-parser");
-var helmet = require("helmet");
-var passport = require("passport");
-var session = require("express-session");
-var cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const helmet = require("helmet");
+const passport = require("passport");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 const connectDB = require("./src/database/config/db");
-var cors = require('cors')
+const cors = require('cors')
 
 const app = express();
 app.use(compression());
@@ -15,7 +15,7 @@ app.use(cors());
 require("dotenv").load();
 
 // set up mongoose connection
-var port = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 connectDB();
 
 // set up our express application

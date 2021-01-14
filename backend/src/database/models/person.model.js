@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Movie = require('./movie.model.js');
 
+/**
+ * How actors and directors are stored in the mongoose database.
+ * For simplicity sake they are both sorted as person.
+ */
 const PersonSchema = new Schema({
     name: {
         type: String,
