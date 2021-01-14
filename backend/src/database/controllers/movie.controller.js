@@ -1,10 +1,15 @@
+// Responsible for responding to user requests
 const apiResponse = require("../../core/api_response");
-const movieJsonData = require("../../core/movie.json");
 const successCode = require("../config/success_codes");
 const errorCode = require("../config/error_codes");
+
+// Model to use in mongoose database
 const Movie = require("../models/movie.model.js");
-const TestMovie = require("../models/test_movie.model.js");
+
+// Formatter used to format json responses
 const formatter = require("../../helpers/formatter");
+
+// Validation used to check user input
 const movieValidation = require("../validation/movie.validation.js");
 const paginationValidation = require("../validation/pagination.validation.js");
 const validation = require("../validation/validation_checker");
@@ -45,7 +50,7 @@ exports.searchMovies = async function (req, res) {
         validation.query(req, movieValidation.filterSchema, paginationValidation.schema, movieValidation.sortSchema);
         let movies = await getMovieList(req.query);
         let result = await Promise.all(movies.map(formatter.formatMovieEntry));
-        apiResponse.sendSuccess(res, 'Search Successful', 200, result);
+        apiResponse.sendSuccess(res, successCode.search, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -78,7 +83,7 @@ exports.movieDetails = async function (req, res) {
         validation.path(req, movieValidation.idSchema);
         let movie = await getMovie(req.params);
         let result = await formatter.formatMovieDetails(movie);
-        apiResponse.sendSuccess(res, 'Get Successful', 200, result);
+        apiResponse.sendSuccess(res, successCode.get, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -111,7 +116,7 @@ exports.removeMovie = async function (req, res) {
         validation.path(req, movieValidation.idSchema);
         let movie = await deleteMovie(req.params);
         let result = await formatter.formatMovieDetails(movie);
-        apiResponse.sendSuccess(res, 'Delete Successful', 200, result);
+        apiResponse.sendSuccess(res, successCode.delete, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -125,7 +130,6 @@ exports.removeMovie = async function (req, res) {
  * @returns {Promise<*>} A promise to return all of the matching documents.
  */
 async function updateMovie({id}, update) {
-
     let movie = await Movie.findByIdAndUpdate(id, update);
     if (!movie) {
         let newError = Error("movie doesn't exist");
@@ -147,7 +151,7 @@ exports.editMovie = async function (req, res) {
         validation.body(req, movieValidation.infoMovieSchema);
         let movie = await updateMovie(req.params, req.body);
         let result = await formatter.formatMovieDetails(movie);
-        apiResponse.sendSuccess(res, 'Update Successful', 200, result);
+        apiResponse.sendSuccess(res, successCode.update, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -182,7 +186,7 @@ exports.createMovie = async function (req, res) {
         validation.body(req, movieValidation.infoMovieSchema, movieValidation.titleMovieSchema);
         let movie = await addMovie(req.body);
         let result = await formatter.formatMovieDetails(movie);
-        apiResponse.sendSuccess(res, 'Create Successful', 201, result);
+        apiResponse.sendSuccess(res, successCode.create, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -226,8 +230,8 @@ exports.computeStatistics = async function(req, res){
     try {
         validation.query(req, movieValidation.filterSchema);
         let distribution = await getDistribution(req.query);
-        let data = await formatter.formatStatistics(distribution);
-        apiResponse.sendSuccess(res, 'Computation Successful', 200, data);
+        let result = await formatter.formatStatistics(distribution);
+        apiResponse.sendSuccess(res, successCode.computation, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }

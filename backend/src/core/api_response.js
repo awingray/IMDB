@@ -1,26 +1,15 @@
-function makeResponse(data, message, status_code) {
-    var response = data;
-    response = {
-        status: status_code,
-        message: message,
-        data: data ? data : [],
-    };
-
-    return response;
-}
-
 /**
  * This function sends a response to the user in case of success.
  * @param res The response to the user.
+ * @param status The response code to send to the user.
  * @param message The message to send to the user.
- * @param code The response code to send to the user.
- * @param data The data to return to the user.
+ * @param result The data to return to the user.
  */
-function sendSuccess(res, message, code, data) {
-    return res.status(code).send({  // TODO save success codes in success_codes.json
+function sendSuccess(res, {status, message}, result) {
+    return res.status(status).send({
         status: 1,
         message: message,
-        data: data ? data : []
+        data: result ? result : []
     });
 }
 
@@ -48,7 +37,6 @@ function sendError(res, error) {
 }
 
 module.exports = {
-    makeResponse,
     sendError,
     sendSuccess,
 };
