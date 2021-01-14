@@ -34,7 +34,9 @@ let infoMovieSchema = Joi.object().keys({
  */
 const filterSchema = Joi.object().keys({
     year: Joi.number(),
-    name: Joi.string(),
+    title: Joi.string(),
+    actor: Joi.string(),
+    director: Joi.string(),
     genre: Joi.string(),
 });
 
@@ -42,8 +44,8 @@ const filterSchema = Joi.object().keys({
  * Used to sort movies.
  */
 const sortSchema = Joi.object().keys({
-    sort: Joi.string().valid('title', 'year', 'user_rating'),
-    order: Joi.string().valid('asc', 'dsc')
+    sort: Joi.string().valid('title', 'year', 'users_rating'),
+    order: Joi.string().valid('asc', 'desc', 'ascending', 'descending', '1', '-1')
 });
 
 /**

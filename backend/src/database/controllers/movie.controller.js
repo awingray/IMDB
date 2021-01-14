@@ -16,22 +16,27 @@ const validation = require("../validation/validation_checker");
 
 /**
  * This is a helper function.
- * It gets a queries the Mongoose database for movies with filters:
- * @param page The page to return.
+ * It queries the Mongoose database for movies with filters:
+ * @param page The page to to return (starting at page 0).
  * @param perPage The number of movies per page.
  * @param sort How the movies are sorted.
- * @param name The name of movie/actor/director to filter with.
+ * @param order The order in which the sorted movies are given.
+ * @param title String that the movie titles should match.
+ * @param actor String that the movie actors should match.
+ * @param director String that the movie directors should match.
  * @param year The year of release.
  * @param genre The genre of the movies.
- * @returns {Promise<*>} A promise to return all of the matching documents.
+ * @return {Promise<*>} A promise to return all of the matching documents.
  */
-async function getMovieList({page = 0, perPage = 10, sort = 'title', name, year, genre}) {
+async function getMovieList({page = 0, perPage = 10, sort = 'title', order = "asc", title, actor, director, year, genre}) {
     let filters = {};
-    if (name) filters.$or = [{title: {$regex: name}}, {actors: {$regex: name}}, {directors: {$regex: name}}];
+    if (title) filters.title = {$regex: title};
+    if (actor) filters.actors = {$regex: actor};
+    if (director) filters.directors = {$regex: director};
     if (genre) filters.genre = {$regex: genre};
     if (year) filters.year = {$eq: year};
     try {
-        return await Movie.find(filters).limit(Number(perPage)).skip(perPage * page).sort({[sort]: 'asc'});
+        return await Movie.find(filters).limit(Number(perPage)).skip(perPage * page).sort({[sort]: order});
     } catch (error) {
         throw errorCode.makeError('DatabaseError', 'database query failed');
     }
