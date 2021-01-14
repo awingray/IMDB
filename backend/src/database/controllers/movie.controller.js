@@ -61,7 +61,7 @@ exports.searchMovies = async function (req, res) {
 
 /**
  * This is a helper function.
- * It gets a queries the Mongoose database for the movies with the matching id:
+ * It queries the Mongoose database for the movies with the matching id:
  * @param id The unique id of the movie.
  * @returns {Promise<*>} A promise to return all of the matching documents.
  */

@@ -3,6 +3,7 @@ const stats = require('./statistics');
 /**
  * This function formats a movie entry in a list of movies.
  * @param movie The movie to be formatted.
+ * @return Formatted movie entry object.
  */
 async function formatMovieEntry(movie={}) {
     return {
@@ -18,6 +19,7 @@ async function formatMovieEntry(movie={}) {
 /**
  * This function formats a the details of a movie.
  * @param movie The movie to be formatted.
+ * @return Formatted movie details object.
  */
 async function formatMovieDetails(movie={}) {
     return {
@@ -61,8 +63,70 @@ async function formatStatistics(distribution) {
     };
 }
 
+/**
+ * This function formats an actor entry in a list of actors.
+ * @param actor The actor to be formatted.
+ * @return Formatted actor entry object.
+ */
+async function formatActorEntry(actor) {
+    return {
+        actor_url: 'http://localhost:4000/api/actors/actor/' + actor._id,
+        name: actor.name || "",
+        gender: actor.gender || "",
+        date_of_birth: actor.dob || ""
+    };
+}
+
+/**
+ * This function formats a the details of an actor.
+ * @param actor The actor to be formatted.
+ * @return Formatted actor details object.
+ */
+async function formatActorDetails(actor) {
+    return {
+        name: actor.name || "",
+        gender: actor.gender || "",
+        date_of_birth: actor.dob || "",
+        bio: actor.bio || "",
+        acted_in: actor.actedIn || []
+    };
+}
+
+/**
+ * This function formats a director entry in a list of directors.
+ * @param director The director to be formatted.
+ * @return Formatted director entry object.
+ */
+async function formatDirectorEntry(director) {
+    return {
+        director_url: 'http://localhost:4000/api/directors/director/' + director._id,
+        name: director.name || "",
+        gender: director.gender || "",
+        date_of_birth: director.dob || ""
+    };
+}
+
+/**
+ * This function formats a the details of a director.
+ * @param director The director to be formatted.
+ * @return Formatted director details object.
+ */
+async function formatDirectorDetails(director) {
+    return {
+        name: director.name || "",
+        gender: director.gender || "",
+        date_of_birth: director.dob || "",
+        bio: director.bio || "",
+        produced: director.producedBy || []
+    };
+}
+
 module.exports = {
     formatMovieEntry,
     formatMovieDetails,
     formatStatistics,
+    formatActorEntry,
+    formatActorDetails,
+    formatDirectorEntry,
+    formatDirectorDetails
 }

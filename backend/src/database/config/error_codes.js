@@ -15,5 +15,6 @@ module.exports = {
     "PathValidationError": 404,
     "PathError" : 404,
     "QueryValidationError": 400,
-    "Default" : 501,
+    "NotImplemented": 501,
+    "Default" : 500,
 };
