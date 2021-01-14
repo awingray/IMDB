@@ -47,9 +47,9 @@ app.use(function (req, res, next) {
 });
 
 // Imports routes
-const movie_routes = require("./src/routes/v1/movie/movie.route");
-const actor_routes = require("./src/routes/v1/actor/actor.route");
-const director_routes = require("./src/routes/v1/director/director.route");
+const movie_routes = require("./src/routes/movie.route");
+const actor_routes = require("./src/routes/actor.route");
+const director_routes = require("./src/routes/director.route");
 
 //Register Routes
 app.use("/api/movies", movie_routes);

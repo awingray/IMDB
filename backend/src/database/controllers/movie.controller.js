@@ -4,7 +4,7 @@ const successCode = require("../config/success_codes");
 const errorCode = require("../config/error_codes");
 const Movie = require("../models/movie.model.js");
 const TestMovie = require("../models/test_movie.model.js");
-const format = require("../../helpers/helper");
+const formatter = require("../../helpers/formatter");
 const movieValidation = require("../validation/movie.validation.js");
 const paginationValidation = require("../validation/pagination.validation.js");
 const validation = require("../validation/validation_checker");
@@ -44,7 +44,7 @@ exports.searchMovies = async function (req, res) {
     try {
         validation.query(req, movieValidation.filterSchema, paginationValidation.schema, movieValidation.sortSchema);
         let movies = await getMovieList(req.query);
-        let result = await Promise.all(movies.map(format.formatMovie));
+        let result = await Promise.all(movies.map(formatter.formatMovieEntry));
         apiResponse.sendSuccess(res, 'Search Successful', 200, result);
     } catch (error) {
         apiResponse.sendError(res, error);
@@ -77,7 +77,7 @@ exports.movieDetails = async function (req, res) {
     try {
         validation.path(req, movieValidation.idSchema);
         let movie = await getMovie(req.params);
-        let result = await format.formatMovie(movie);
+        let result = await formatter.formatMovieDetails(movie);
         apiResponse.sendSuccess(res, 'Get Successful', 200, result);
     } catch (error) {
         apiResponse.sendError(res, error);
@@ -110,7 +110,7 @@ exports.removeMovie = async function (req, res) {
     try {
         validation.path(req, movieValidation.idSchema);
         let movie = await deleteMovie(req.params);
-        let result = await format.formatMovie(movie);
+        let result = await formatter.formatMovieDetails(movie);
         apiResponse.sendSuccess(res, 'Delete Successful', 200, result);
     } catch (error) {
         apiResponse.sendError(res, error);
@@ -146,7 +146,7 @@ exports.editMovie = async function (req, res) {
         validation.path(req, movieValidation.idSchema);
         validation.body(req, movieValidation.infoMovieSchema);
         let movie = await updateMovie(req.params, req.body);
-        let result = await format.formatMovie(movie);
+        let result = await formatter.formatMovieDetails(movie);
         apiResponse.sendSuccess(res, 'Update Successful', 200, result);
     } catch (error) {
         apiResponse.sendError(res, error);
@@ -181,7 +181,7 @@ exports.createMovie = async function (req, res) {
     try {
         validation.body(req, movieValidation.infoMovieSchema, movieValidation.titleMovieSchema);
         let movie = await addMovie(req.body);
-        let result = await format.formatMovie(movie);
+        let result = await formatter.formatMovieDetails(movie);
         apiResponse.sendSuccess(res, 'Create Successful', 201, result);
     } catch (error) {
         apiResponse.sendError(res, error);
@@ -226,7 +226,7 @@ exports.computeStatistics = async function(req, res){
     try {
         validation.query(req, movieValidation.filterSchema);
         let distribution = await getDistribution(req.query);
-        let data = await format.formatStatistics(distribution);
+        let data = await formatter.formatStatistics(distribution);
         apiResponse.sendSuccess(res, 'Computation Successful', 200, data);
     } catch (error) {
         apiResponse.sendError(res, error);

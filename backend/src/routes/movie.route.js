@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var movie_controller = require("../../../database/controllers/movie.controller");
+var movie_controller = require("../database/controllers/movie.controller");
 
 router.get("/", movie_controller.searchMovies);
 router.post("/", movie_controller.createMovie);
