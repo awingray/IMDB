@@ -39,7 +39,7 @@ The following diagram shows how the data is sorted in the api's database.
 - *People* all the people that have worked on movies according to the database.
 - *Person* a single person that has worked on a movie either an actor or director.
 
-## Documentation v0.2
+## Documentation v0.3
 The postman documentation of the api itself is available
 [here](https://documenter.getpostman.com/view/13748815/TVmQcad3).
 
@@ -63,18 +63,33 @@ DB_URL=mongodb+srv://admin:admin@cluster0.6vb9c.mongodb.net/imdb?retryWrites=tru
 *Save and then run: `node server.js`*
 
 ## Folders
-<!-- todo: insert other readme here -->
-`routes` -> for endpoints hence `routes` 
+### Back-end
+`backend` -> For back-end api related files.
 
-`helpers` -> any cool functions that can be used e.g. stats calculations/visuals etc.
-See `utility` folder from the first backend iteration
+`backend/src` -> Code that makes the back-end work.
 
-`core` -> anything common with the mainline that will be referenced a lot (probably shouldn't touch atm)
+`backend/src/core` -> Anything common with the mainline that will be referenced.
 
-`database` -> mvc of the app
+`backend/src/database` -> Model view controller (MCV) of the api.
 
-`database/config` -> configs for connecting to the cloud mongo db (don't touch this)
+`backend/src/database/config` -> Configs for connecting to the cloud mongo database.
 
-`database/controllers` -> all functionalities here
+`backend/src/database/controllers` -> All functionalities here.
 
-`database/models` -> models for everything in the app (actors/movies/users etc.)
+`backend/src/database/models` -> Models documents for mongo database, models for everything in the api. 
+
+`backend/src/database/validation` -> Joi validation used to check user input.
+
+`backend/src/helpers` -> Any cool functions that can be used e.g. stats calculations/visuals etc 
+(see `utility` folder from the first backend iteration).
+
+`backend/src/routes` -> Defines Routes for endpoints hence `routes`.
+
+### Front-end
+`frontend` -> For front-end website related files.
+
+`frontend/public` -> Public assets for the website hence `public`.
+
+`frontend/components` -> React components for the website.
+
+`frontend/pages` -> Different pages for the website used by the router.
