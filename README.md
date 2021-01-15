@@ -11,29 +11,23 @@ The goal of this project is to create a basic restful api based on the
 The requirements for this project are flexible just general searching and statistics for Movies, Actors and Directors. 
 Additional the api should have at-least 1 CRUD endpoint.
 
-## API Design v0.2
-For the api we design we choose to split the IMDB Movies Dataset into 2 primary endpoints.
+## API Design v0.3
+For the api we design we choose to split the IMDB Movies Dataset into 3 primary endpoints.
 The first endpoint is *movie* which contains information about a movie in the dataset.
-The second endpoint is *person* which is a combination of actors and directors.
-We choose to join actors and directors into a single endpoint because they both have similar functionalities,
+The second endpoint is *actor* which contains information about actors in the dataset.
+The third endpoint is *director* which contains information about directors in the dataset.
+Underwater we choose to join actors and directors into a single module *person* because they both have similar functionalities,
 which means we avoid duplicate code. 
 
 We choose to implement CRUD for the *movie* endpoint.
 We decided to do this because we are working with a movie dataset it seemed make sense. 
 Instead of editing the `.csv` dataset file we choose to use a database.
-This is mainly a result of the technology stack that we are using.
-
-As an additional feature we decided to add *Users* to our api.
-The motivation for this feature is so that users of the api can easily get statistics about their favorite movies.
-This subject to change and hasn't been implemented yet.
+This is mainly a result of the technology stack that we are using (see details below).
 
 ### Database UML diagram
 The following diagram shows how the data is sorted in the api's database.
 
-![UML Diagram](images/api_uml.png)
-- *Users* is the collection of all users using the api.
-- *User* is somebody that uses the api. A user has a list of *Favorites*.
-- *Favorites* is a list of movies for a single user.
+![UML Diagram](doc_images/api_uml.png)
 - *Movies* is the collection of all movies in the dataset.
 - *Movie* is a single movie in the dataset. A movie has multiple actors and directors.
 - *People* all the people that have worked on movies according to the database.
@@ -48,10 +42,10 @@ For this api we decided to use the MERN stack.
 The MERN, consists of: `mongo`, `node.js`, `express` and `react`.
 It uses the module view controller (MVC) architecture. 
 
-![Mern Stack](images/mern.png)
+![Mern Stack](doc_images/mern.png)
 
 The motivation behind using this stack is because this stack allows for quick development.
-Additional some group members had already worked with react and could guide the others to learn the stack.
+Additional some group members had already worked with MERN and could guide the others to learn the stack.
 A neat feature of the MERN stack is that it uses javascript for everything, 
 meaning we didn't have to switch between different programming languages.
 
