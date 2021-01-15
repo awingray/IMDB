@@ -4,7 +4,7 @@ let Joi = require("joi");
  * Used to validate person name when searching for them.
  */
 const filterSchema = Joi.object().keys({
-    name: Joi.string
+    name: Joi.string()
 });
 
 /**

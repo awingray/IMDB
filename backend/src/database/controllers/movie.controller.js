@@ -184,14 +184,18 @@ exports.createMovie = async function (req, res) {
 /**
  * This is a helper function.
  * It gets a queries the distribution of user_ratings of movies.
- * @param name The name of movie/actor/director to filter with.
+ * @param title String that the movie titles should match.
+ * @param actor String that the movie actors should match.
+ * @param director String that the movie directors should match.
  * @param year The year of release.
  * @param genre The genre of the movies.
  * @returns {Promise<*>} A promise to return the distribution as an array.
  */
-async function getDistribution({name, year, genre}) {
+async function getDistribution({title, actor, director, year, genre}) {
     let filters = {};
-    if (name) filters.$or = [{title: {$regex: name}}, {actors: {$regex: name}}, {directors: {$regex: name}}];
+    if (title) filters.title = {$regex: title};
+    if (actor) filters.actors = {$regex: actor};
+    if (director) filters.directors = {$regex: director};
     if (genre) filters.genre = {$regex: genre};
     if (year) filters.year = {$eq: year};
 
