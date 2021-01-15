@@ -54,13 +54,21 @@ The motivation behind using this stack is because this stack allows for quick de
 Additional because the stack uses javascript for everything we don't have to switch between different programming languages.
 
 ## Running 
-*If doesn't exist, create a blank file called: `.env` and put in:*
-```
-PORT=4000
-NODE_ENV=development
-DB_URL=mongodb+srv://admin:admin@cluster0.6vb9c.mongodb.net/imdb?retryWrites=true&w=majority
-```
-*Save and then run: `node server.js`*
+### Developer Running
+To run the back-end api go to the back-end directory `cd backend`.
+First install the needed dependencies run: `npm install`, 
+this should create a directory `node_modules` and a file `package-lock.json`.
+Now you can run the back-end api: `npm run`.
+
+To run the front-end website go to the front-end directory `cd frontend`.
+First install the needed dependencies run: `npm install`, 
+This should create a directory `node_modules` and a file `package-lock.json`.
+Now you can run the front-end website: `npm run`, 
+this should open a webpage in your browser.
+Note: make sure the back-end is running otherwise the front-end will not work.
+
+### Deploying 
+<!-- TODO --->
 
 ## Folders
 ### Back-end
