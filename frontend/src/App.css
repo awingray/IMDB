@@ -28,6 +28,10 @@
   color: #61dafb;
 }
 
+.upperPadding{
+  padding-top: 5em;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
