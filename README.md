@@ -51,7 +51,9 @@ It uses the module view controller (MVC) architecture.
 ![Mern Stack](images/mern.png)
 
 The motivation behind using this stack is because this stack allows for quick development.
-Additional because the stack uses javascript for everything we don't have to switch between different programming languages.
+Additional some group members had already worked with react and could guide the others to learn the stack.
+A neat feature of the MERN stack is that it uses javascript for everything, 
+meaning we didn't have to switch between different programming languages.
 
 ## Running 
 ### Developer Running
