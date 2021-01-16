@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dropdown from 'react-bootstrap/Dropdown'
 import Form from 'react-bootstrap/Form'
 
-function Home() {
+function HomePage() {
   const aMovies = {
     "total_rows": 62059, "offset": 1929, "rows": [
       { "id": "3aabb9ae22a9f0b0dbb6297c5931a44d", "key": "Aaah! Zombies!!", "value": null },
@@ -192,4 +192,4 @@ function Home() {
   )
 }
 
-export default Home;
+export default HomePage;
