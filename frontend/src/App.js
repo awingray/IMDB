@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 // Import all website pages.
@@ -9,9 +9,9 @@ import HomePage from "./pages/homePage";
 // Import the navigation bar component.
 import NavigationBar from "./components/navigationBar";
 
-function App() {
-    return (
-        <div className="App">
+class App extends Component {
+    render() {
+        return (
             <Router>
                 <div className="sticky-top">
                     <NavigationBar/>
@@ -22,8 +22,8 @@ function App() {
                     <Route path="/statistics" exact component={() => <StatisticsPage/>}/>
                 </Switch>
             </Router>
-        </div>
-    );
+        );
+    }
 }
 
-export default App; 
+export default App;

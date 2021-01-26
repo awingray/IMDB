@@ -8,7 +8,8 @@ const BASE_URL = 'http://localhost:4000/api/movies/statistics?';
 class StatisticsPage extends Component {
     state = {
         loading: true,
-        response: null
+        response: null,
+        error: false
     };
 
     componentDidMount() {
@@ -33,8 +34,8 @@ class StatisticsPage extends Component {
         let {loading, response, error} = this.state;
         if (loading) return (
             <React.Fragment>
-                <p className="text-justify text-center text-primary">Fetching data may take a few seconds</p>
-                <div className="d-flex justify-content-center text-primary">
+                <p className="text-justify text-center text-secondary">Fetching data may take a few seconds</p>
+                <div className="d-flex justify-content-center text-secondary">
                     <div className="spinner-border" role="status">
                         <span className="sr-only"> Loading... </span>
                     </div>
@@ -42,7 +43,6 @@ class StatisticsPage extends Component {
             </React.Fragment>
         );
         if (error) return <p className="text-justify text-center text-error">{error}</p>
-        console.log(response);
         return <StatsComponent response={response}/>;
     };
 
@@ -54,7 +54,7 @@ class StatisticsPage extends Component {
     render() {
         return (
             <React.Fragment>
-                <h1 className="text-justify text-center text-white bg-primary">Search Statistics</h1>
+                <h1 className="text-justify text-center text-black">Search Statistics</h1>
                 <button onClick={this.handleToSearch}
                         className="btn btn-link text-secondary">
                     <p>{"< Back to search"}</p>

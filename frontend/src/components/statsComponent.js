@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState, Component} from 'react';
+import React, {Component} from 'react';
 import {Line} from 'react-chartjs-2';
 
 class StatsComponent extends Component {
@@ -12,8 +12,8 @@ class StatsComponent extends Component {
                 {
                     label: "Number of Movies",
                     data: distribution,
-                    borderColor: "rgb(0,0,255,0.6)",
-                    backgroundColor: "rgb(64,128,255,0.55)",
+                    borderColor: "rgb(255,64,0,0.6)",
+                    backgroundColor: "rgb(255,128,64,0.55)",
                 }
             ]
         };
