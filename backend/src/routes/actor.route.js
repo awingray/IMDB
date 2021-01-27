@@ -6,7 +6,7 @@ const personController = require("../database/controllers/person.controller.js")
  * Routes for actor endpoints in the api.
  */
 router.get("/", personController.searchActors);
-router.get("/actor/:id", personController.actorDetails);
-router.get("/actor/:id/genres", personController.actorGenres);
+router.get("/:id", personController.actorDetails);
+router.get("/:id/genres", personController.actorGenres);
 
 module.exports = router;
