@@ -54,6 +54,7 @@ async function formatMovies(movies = [], filters = {}) {
 async function formatMovieDetails(movie = {}) {
     return {
         _self_uri: 'http://localhost:4000/api/movies/' + movie.id,
+        collection_uri: 'http://localhost:4000/api/movies/',
         title: movie.title || '',
         rating: movie.rating || '',
         year: movie.year || '',
@@ -140,6 +141,7 @@ async function formatActors(actors, filters) {
 async function formatActorDetails(actor) {
     return {
         _self_uri: 'http://localhost:4000/api/actors/' + actor._id,
+        collection_uri: 'http://localhost:4000/api/actors/',
         genres_uri: 'http://localhost:4000/api/actors/' + actor._id + '/genres',
         name: actor.name || '',
         gender: actor.gender || '',
@@ -184,6 +186,7 @@ async function formatDirectors(directors, filters) {
 async function formatDirectorDetails(director) {
     return {
         _self_uri: 'http://localhost:4000/api/directors/' + director._id,
+        collection_uri: 'http://localhost:4000/api/directors/',
         genres_uri: 'http://localhost:4000/api/directors/' + director._id + '/genres',
         name: director.name || '',
         gender: director.gender || '',
