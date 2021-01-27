@@ -140,6 +140,7 @@ async function formatActors(actors, filters) {
 async function formatActorDetails(actor) {
     return {
         _self_uri: 'http://localhost:4000/api/actors/' + actor._id,
+        genres_uri: 'http://localhost:4000/api/actors/' + actor._id + '/genres',
         name: actor.name || '',
         gender: actor.gender || '',
         date_of_birth: actor.dob || '',
@@ -183,6 +184,7 @@ async function formatDirectors(directors, filters) {
 async function formatDirectorDetails(director) {
     return {
         _self_uri: 'http://localhost:4000/api/directors/' + director._id,
+        genres_uri: 'http://localhost:4000/api/directors/' + director._id + '/genres',
         name: director.name || '',
         gender: director.gender || '',
         date_of_birth: director.dob || '',
