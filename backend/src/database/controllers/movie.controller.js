@@ -52,7 +52,7 @@ exports.searchMovies = async function (req, res) {
     try {
         validation.query(req, movieValidation.filterSchema, paginationValidation.schema, movieValidation.sortSchema);
         let movies = await getMovieList(req.query);
-        let result = await Promise.all(movies.map(formatter.formatMovieEntry));
+        let result = await formatter.formatMovies(movies, req.query);
         apiResponse.sendSuccess(res, successCode.search, result);
     } catch (error) {
         apiResponse.sendError(res, error);
@@ -221,7 +221,7 @@ exports.computeStatistics = async function(req, res){
     try {
         validation.query(req, movieValidation.filterSchema);
         let distribution = await getDistribution(req.query);
-        let result = await formatter.formatStatistics(distribution);
+        let result = await formatter.formatStatistics(distribution, req.query);
         apiResponse.sendSuccess(res, successCode.computation, result);
     } catch (error) {
         apiResponse.sendError(res, error);

@@ -37,7 +37,7 @@ exports.searchActors = async function (req, res) {
     try {
         validation.query(req, personValidation.filterSchema, paginationValidation.schema);
         let actors = await getActorList(req.query);
-        let result = await Promise.all(actors.map(formatter.formatActorEntry));
+        let result = await formatter.formatActors(actors, req.query);
         apiResponse.sendSuccess(res, successCode.search, result);
     } catch (error) {
         apiResponse.sendError(res, error);
@@ -100,7 +100,7 @@ exports.searchDirectors = async function (req, res) {
     try {
         validation.query(req, personValidation.filterSchema, paginationValidation.schema);
         let directors = await getDirectorList(req.query);
-        let result = await Promise.all(directors.map(formatter.formatDirectorEntry));
+        let result = await formatter.formatDirectors(directors, req.query);
         apiResponse.sendSuccess(res, successCode.search, result);
     } catch (error) {
         apiResponse.sendError(res, error);
