@@ -23,7 +23,7 @@ function movieFilterToQuery({title, actor, director, genre, year}) {
  */
 async function formatMovieEntry(movie = {}) {
     return {
-        movie_uri: 'http://localhost:4000/api/movies/movie/' + movie._id,
+        movie_uri: 'http://localhost:4000/api/movies/' + movie._id,
         title: movie.title || '',
         year: movie.year || '',
         users_rating: movie.users_rating || '',
@@ -53,7 +53,7 @@ async function formatMovies(movies = [], filters = {}) {
  */
 async function formatMovieDetails(movie = {}) {
     return {
-        _self_uri: 'http://localhost:4000/api/movies/movie/' + movie.id,
+        _self_uri: 'http://localhost:4000/api/movies/' + movie.id,
         title: movie.title || '',
         rating: movie.rating || '',
         year: movie.year || '',
@@ -112,7 +112,7 @@ function personFilterToQuery({name}) {
  */
 async function formatActorEntry(actor) {
     return {
-        actor_uri: 'http://localhost:4000/api/actors/actor/' + actor._id,
+        actor_uri: 'http://localhost:4000/api/actors/' + actor.id,
         name: actor.name || '',
         gender: actor.gender || '',
         date_of_birth: actor.dob || ''
@@ -139,7 +139,7 @@ async function formatActors(actors, filters) {
  */
 async function formatActorDetails(actor) {
     return {
-        _self_uri: 'http://localhost:4000/api/actors/actor/' + actor._id,
+        _self_uri: 'http://localhost:4000/api/actors/' + actor._id,
         name: actor.name || '',
         gender: actor.gender || '',
         date_of_birth: actor.dob || '',
@@ -155,7 +155,7 @@ async function formatActorDetails(actor) {
  */
 async function formatDirectorEntry(director) {
     return {
-        director_uri: 'http://localhost:4000/api/directors/director/' + director._id,
+        director_uri: 'http://localhost:4000/api/directors/' + director.id,
         name: director.name || '',
         gender: director.gender || '',
         date_of_birth: director.dob || ''
@@ -182,7 +182,7 @@ async function formatDirectors(directors, filters) {
  */
 async function formatDirectorDetails(director) {
     return {
-        _self_uri: 'http://localhost:4000/api/directors/director/' + director._id,
+        _self_uri: 'http://localhost:4000/api/directors/' + director._id,
         name: director.name || '',
         gender: director.gender || '',
         date_of_birth: director.dob || '',
