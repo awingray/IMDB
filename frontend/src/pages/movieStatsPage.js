@@ -5,7 +5,7 @@ import StatsComponent from "../components/statsComponent";
 const BASE_URL = 'http://localhost:4000/api/movies/statistics?';
 
 
-class StatisticsPage extends Component {
+class MovieStatsPage extends Component {
     state = {
         loading: true,
         response: null,
@@ -65,4 +65,4 @@ class StatisticsPage extends Component {
     };
 }
 
-export default StatisticsPage;
+export default MovieStatsPage;

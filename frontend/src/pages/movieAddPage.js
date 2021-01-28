@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Form from "../components/form";
 
-class AddMoviePage extends Component {
+class MovieAddPage extends Component {
   state = {
     movie: {
       title: "",
@@ -167,4 +167,4 @@ class AddMoviePage extends Component {
   }
 }
 
-export default AddMoviePage;
+export default MovieAddPage;

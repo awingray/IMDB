@@ -2,15 +2,18 @@ import React from "react";
 import {Link, withRouter} from "react-router-dom";
 import NavigationBarLink from "./navigationBarLink";
 
-const pages = [{
-    name: "Home",
-    route: "/"
+const mainPages = [{
+    name: "Search Movie",
+    route: "/search-movie"
+},{
+    name: "Search Actor",
+    route: "/search-actor"
+},{
+    name: "Search Director",
+    route: "/search-director"
 },{
     name: "Create Movie",
-    route: "/createMovie"
-},{
-    name: "Statistics",
-    route: "/statistics"
+    route: "/create-movie"
 }];
 
 function NavigationBar(props) {
@@ -23,7 +26,7 @@ function NavigationBar(props) {
 
                 <div className="collapse navbar-collapse" >
                     <ul className="navbar-nav ml-auto">
-                        {pages.map((page) =>
+                        {mainPages.map((page) =>
                             <NavigationBarLink name={page.name}
                                                route={page.route}
                                                key={page.route}
