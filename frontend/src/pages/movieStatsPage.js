@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import StatsComponent from "../components/statsComponent";
+import ShyLink from "../components/shyLink";
 
 
 const BASE_URL = 'http://localhost:4000/api/movies/statistics?';
@@ -46,19 +47,11 @@ class MovieStatsPage extends Component {
         return <StatsComponent response={response}/>;
     };
 
-    handleToSearch() {
-        // TODO: stuff with router here
-        console.log("Not Implemented yet :(");
-    };
-
     render() {
         return (
             <React.Fragment>
                 <h1 className="text-justify text-center text-black">Search Statistics</h1>
-                <button onClick={this.handleToSearch}
-                        className="btn btn-link text-secondary">
-                    <p>{"< Back to search"}</p>
-                </button>
+                <ShyLink label="< Back to Search" route="/search-movie"/>
                 {this.formatContent()}
             </React.Fragment>
         );
