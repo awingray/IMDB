@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-class MovieList extends Component {
+class MovieTable extends Component {
 
     formatMovie({image_url, title, year, users_rating, votes}) {
         return (
@@ -46,4 +46,4 @@ class MovieList extends Component {
     }
 }
 
-export default MovieList;
+export default MovieTable;

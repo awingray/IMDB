@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-import MovieList from "../components/movieList";
+import MovieTable from "../components/movieTable";
 
 class ActorPage extends Component {
     state = {
@@ -63,7 +63,7 @@ class ActorPage extends Component {
                             <li className="list-group-item"> <b>Name:</b> {name} </li>
                             <li className="list-group-item"> <b>Date of Birth:</b> {dob} </li>
                             <li className="list-group-item"> <b>Biography:</b> {bio} </li>
-                            <li className="list-group-item"> <b>Movies:</b> <MovieList movies={movies.slice(0,10)}/></li>
+                            <li className="list-group-item"> <b>Movies:</b> <MovieTable movies={movies.slice(0,10)}/></li>
                         </ul>
                     </div>
                 </div>
