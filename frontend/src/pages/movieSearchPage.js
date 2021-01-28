@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Dropdown from 'react-bootstrap/Dropdown'
 import Form from 'react-bootstrap/Form'
-import ShyLink from "../components/shyLink";
 
 function MovieSearchPage() {
   const aMovies = {
@@ -116,8 +115,6 @@ function MovieSearchPage() {
   });
   return (
     <div className="about">
-      <ShyLink label="See Statistics >" route="/search-movie/statistics"/>
-      <ShyLink label="movie 123" route="/movie-details/123"/>
       <div className="container">
       <div className="upperPadding">
         <div className="row">

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Form from "../components/form";
-import ShyLink from "../components/shyLink";
 
 class MovieAddPage extends Component {
   state = {
@@ -43,7 +42,6 @@ class MovieAddPage extends Component {
     return (
       <React.Fragment>
         <h1>Add new movie</h1>
-        <ShyLink label="New Movie details >"/>
         <div className="py-5 container">
           <form onSubmit={this.handleSubmit}>
             <Form

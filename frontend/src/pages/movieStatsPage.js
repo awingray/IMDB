@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import StatsComponent from "../components/statsComponent";
-import ShyLink from "../components/shyLink";
 
 
 const BASE_URL = 'http://localhost:4000/api/movies/statistics?';
@@ -51,7 +50,6 @@ class MovieStatsPage extends Component {
         return (
             <React.Fragment>
                 <h1 className="text-justify text-center text-black">Search Statistics</h1>
-                <ShyLink label="< Back to Search" route="/search-movie"/>
                 {this.formatContent()}
             </React.Fragment>
         );
