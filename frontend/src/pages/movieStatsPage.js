@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import StatsComponent from "../components/statsComponent";
+import Loading from "../components/loading";
+import {Link} from "react-router-dom";
 
 
 const BASE_URL = 'http://localhost:4000/api/movies/statistics?';
@@ -32,26 +34,34 @@ class MovieStatsPage extends Component {
 
     formatContent() {
         let {loading, response, error} = this.state;
-        if (loading) return (
-            <React.Fragment>
-                <p className="text-justify text-center text-secondary">Fetching data may take a few seconds</p>
-                <div className="d-flex justify-content-center text-secondary">
-                    <div className="spinner-border" role="status">
-                        <span className="sr-only"> Loading... </span>
-                    </div>
-                </div>
-            </React.Fragment>
-        );
+        if (loading) return <Loading />;
         if (error) return <p className="text-justify text-center text-error">{error}</p>
         return <StatsComponent response={response}/>;
     };
 
+    getLinks() {
+        return (
+            <div className="row">
+                <div className="col-md-6">
+                    <Link className="text-secondary" to="/search-movie">{"< Back to search"}</Link>
+                </div>
+            </div>
+        );
+    }
+
     render() {
         return (
-            <React.Fragment>
-                <h1 className="text-justify text-center text-black">Search Statistics</h1>
-                {this.formatContent()}
-            </React.Fragment>
+            <div className="container mt-2">
+                <div className="card">
+                    <div className="card-header">
+                        <h3 className="text-center"> Search Statistics </h3>
+                        {this.getLinks()}
+                    </div>
+                    <div className="card-body">
+                        {this.formatContent()}
+                    </div>
+                </div>
+            </div>
         );
     };
 }

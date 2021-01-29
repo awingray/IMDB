@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+import {Chart} from 'chart.js';
 import {Line} from 'react-chartjs-2';
+
+Chart.defaults.global.legend.display = false;
 
 class StatsComponent extends Component {
     render() {
@@ -18,17 +21,18 @@ class StatsComponent extends Component {
             ]
         };
         return (
-            <React.Fragment>
-                <div className="p-5 d-flex flex-md-row flex-column justify-content-between text-center text-secondary">
-                    <p>{'Mean: ' + Math.round(mean*100)/100 }</p>
-                    <p> {'Median: ' + Math.round(median*100)/100} </p>
-                    <p> {'Mode: ' + Math.round(mode*100)/100} </p>
-                    <p> {'Standard Deviation: ' + Math.round(std*100)/100} </p>
-                </div>
-                <div className="p-5 text-secondary">
-                    <Line data={graphData}/>
-                </div>
-            </React.Fragment>
+            <ul className="list-group">
+                <li className="list-group-item"> <b>Mean: </b> {Math.round(mean*100)/100} </li>
+                <li className="list-group-item"> <b>Median: </b> {Math.round(median*100)/100} </li>
+                <li className="list-group-item"> <b>Mode: </b> {Math.round(mode*100)/100} </li>
+                <li className="list-group-item"> <b>Standard Deviation: </b> {Math.round(std*100)/100} </li>
+                <li className="list-group-item">
+                    <b>Rating Distribution: </b>
+                    <div className="p-5 text-secondary">
+                        <Line data={graphData}/>
+                    </div>
+                </li>
+            </ul>
         );
     }
 }
