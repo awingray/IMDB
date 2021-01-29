@@ -1,29 +1,33 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import Form from "react-bootstrap/Form";
+import fields from "../components/fields.json"
 
-const fields = [
-    {name: "title", prompt: "Title: "},
-    {name: "rating", prompt: "Rating: "},
-    {name: "year", prompt: "Year: "},
-    {name: "user_rating", prompt: "User Rating: "},
-    {name: "votes", prompt: "Votes: "},
-    {name: "metascore", prompt: "Meta score: "},
-    {name: "img_url", prompt: "Image Url: "},
-    {name: "countries", prompt: "Countries (separated by comma): "},
-    {name: "languages", prompt: "Languages (separated by comma): "},
-    {name: "actors", prompt: "Actors (separated by comma): "},
-    {name: "genre", prompt: "Genre (separated by comma): "},
-    {name: "tagline", prompt: "Tagline: "},
-    {name: "description", prompt: "Description: "},
-    {name: "directors", prompt: "Directors (separated by comma): "},
-    {name: "runtime", prompt: "Runtime in minutes: "},
-    {name: "imdb_url", prompt: "IMDB url: "},
-];
 
 class MovieAddPage extends Component {
+    state = {
+        movie: {
+            title: "",
+            rating: "",
+            year: "",
+            user_rating: "",
+            votes: "",
+            metascore: "",
+            img_url: "",
+            countries: "",
+            languages: "",
+            actors: "",
+            genre: "",
+            tagline: "",
+            description: "",
+            directors: "",
+            runtime: "",
+            imdb_url: "",
+        },
+    };
 
-    formatField({name, prompt}) {
+
+    formatField = function (movie, {name, prompt}) {
         return (
             <li className="list-group-item">
                 <div className="row">
@@ -31,7 +35,7 @@ class MovieAddPage extends Component {
                         <b>{prompt}</b>
                     </div>
                     <div className="col">
-                        <Form.Control type="text" placeholder={name}/>
+                        <Form.Control type="text" placeholder={name} value={movie[name]}/>
                     </div>
                 </div>
             </li>
@@ -49,6 +53,8 @@ class MovieAddPage extends Component {
     }
 
     render() {
+        const {movie} = this.state;
+
         return (
             <div className="container mt-2 mb-2">
                 <div className="card">
@@ -58,7 +64,7 @@ class MovieAddPage extends Component {
                     </div>
                     <div className="card-body">
                         <ul className="list-group">
-                            {fields.map(this.formatField)}
+                            {fields.map((field) => this.formatField(movie, field))}
                         </ul>
                     </div>
                     <div className="ml-5 mr-5 mb-2">
