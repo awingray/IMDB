@@ -1,170 +1,73 @@
-import React, { Component } from "react";
-import Form from "../components/form";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
+import Form from "react-bootstrap/Form";
+
+const fields = [
+    {name: "title", prompt: "Title: "},
+    {name: "rating", prompt: "Rating: "},
+    {name: "year", prompt: "Year: "},
+    {name: "user_rating", prompt: "User Rating: "},
+    {name: "votes", prompt: "Votes: "},
+    {name: "metascore", prompt: "Meta score: "},
+    {name: "img_url", prompt: "Image Url: "},
+    {name: "countries", prompt: "Countries (separated by comma): "},
+    {name: "languages", prompt: "Languages (separated by comma): "},
+    {name: "actors", prompt: "Actors (separated by comma): "},
+    {name: "genre", prompt: "Genre (separated by comma): "},
+    {name: "tagline", prompt: "Tagline: "},
+    {name: "description", prompt: "Description: "},
+    {name: "directors", prompt: "Directors (separated by comma): "},
+    {name: "runtime", prompt: "Runtime in minutes: "},
+    {name: "imdb_url", prompt: "IMDB url: "},
+];
 
 class MovieAddPage extends Component {
-  state = {
-    movie: {
-      title: "",
-      rating: "",
-      year: "",
-      user_rating: "",
-      votes: "",
-      metascore: "",
-      img_url: "",
-      countries: "",
-      languages: "",
-      actors: "",
-      genre: "",
-      tagline: "",
-      description: "",
-      directors: "",
-      runtime: "",
-      imdb_url: "",
-    },
-  };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(this.state.movie, "submitted");
+    formatField({name, prompt}) {
+        return (
+            <li className="list-group-item">
+                <div className="row">
+                    <div className="col-3 align-middle">
+                        <b>{prompt}</b>
+                    </div>
+                    <div className="col">
+                        <Form.Control type="text" placeholder={name}/>
+                    </div>
+                </div>
+            </li>
+        );
+    }
 
-    // function to get input from state to new movie in api?
-  };
+    getLinks() {
+        return (
+            <div className="row">
+                <div className="col-md-6">
+                    <Link className="text-secondary" to="/search-movie">{"< Search other movies"}</Link>
+                </div>
+            </div>
+        );
+    }
 
-  handleChange = ({ currentTarget: input }) => {
-    const movie = { ...this.state.movie };
-    movie[input.name] = input.value;
-    this.setState({ movie });
-  };
-
-  render() {
-    const { movie } = this.state;
-
-    return (
-      <React.Fragment>
-        <h1>Add new movie</h1>
-        <div className="py-5 container">
-          <form onSubmit={this.handleSubmit}>
-            <Form
-              name="title"
-              label="Title"
-              value={movie.title}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="rating"
-              label="Rating"
-              value={movie.rating}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="year"
-              label="Year"
-              value={movie.year}
-              type="number"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="user_rating"
-              label="User rating"
-              value={movie.user_rating}
-              type="number"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="votes"
-              label="Votes"
-              value={movie.votes}
-              type="number"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="metascore"
-              label="Metascore"
-              value={movie.metascore}
-              type="number"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="img_url"
-              label="Image url"
-              value={movie.img_url}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="countries"
-              label="Countries (separate by comma)"
-              value={movie.countries}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="languages"
-              label="Languages (separate by comma)"
-              value={movie.languages}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="actors"
-              label="Actors (separate by comma)"
-              value={movie.actors}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="genre"
-              label="Genre (separate by comma)"
-              value={movie.genre}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="tagline"
-              label="Tagline"
-              value={movie.tagline}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="description"
-              label="Description"
-              value={movie.description}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="directors"
-              label="Directors (separate by comma)"
-              value={movie.directors}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="runtime"
-              label="Runtime in minutes"
-              value={movie.runtime}
-              type="number"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="imdb_url"
-              label="IMDB url"
-              value={movie.imdb_url}
-              type="text"
-              onChange={this.handleChange}
-            />
-
-            <button className="btn btn-primary">Submit form</button>
-          </form>
-        </div>
-        <div className="py-5" />
-        <div className="py-5" />
-      </React.Fragment>
-    );
-  }
+    render() {
+        return (
+            <div className="container mt-2 mb-2">
+                <div className="card">
+                    <div className="card-header">
+                        <h3 className="text-center"> Create Movie </h3>
+                        {this.getLinks()}
+                    </div>
+                    <div className="card-body">
+                        <ul className="list-group">
+                            {fields.map(this.formatField)}
+                        </ul>
+                    </div>
+                    <div className="ml-5 mr-5 mb-2">
+                        <Form.Control className="bg-warning text-white" type="submit" value="Add Movie"/>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default MovieAddPage;
