@@ -73,7 +73,7 @@ class DirectorPage extends Component {
                             <li className="list-group-item"> <b>Name:</b> {name} </li>
                             <li className="list-group-item"> <b>Date of Birth:</b> {dob} </li>
                             <li className="list-group-item"> <b>Biography:</b> {bio} </li>
-                            <li className="list-group-item"> <b>Movies:</b> <MovieTable movies={movies.slice(0,10)}/></li>
+                            <li className="list-group-item"> <b>Directed:</b> <MovieTable movies={movies.slice(0,10)}/></li>
                         </ul>
                     </div>
                 </div>

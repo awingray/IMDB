@@ -41,9 +41,6 @@ class ActorPage extends Component {
                 <div className="col-md-6">
                     <Link className="text-secondary" to="/search-actor">{"< Search other actors"}</Link>
                 </div>
-                <div className="col-md-6 text-right">
-                    <Link className="text-warning" to="/actor-details/123/edit">{"Edit information >"}</Link>
-                </div>
             </div>
         );
     }
@@ -63,7 +60,7 @@ class ActorPage extends Component {
                             <li className="list-group-item"> <b>Name:</b> {name} </li>
                             <li className="list-group-item"> <b>Date of Birth:</b> {dob} </li>
                             <li className="list-group-item"> <b>Biography:</b> {bio} </li>
-                            <li className="list-group-item"> <b>Movies:</b> <MovieTable movies={movies.slice(0,10)}/></li>
+                            <li className="list-group-item"> <b>Performed in:</b> <MovieTable movies={movies.slice(0,10)}/></li>
                         </ul>
                     </div>
                 </div>
