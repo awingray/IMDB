@@ -1,198 +1,160 @@
-import React, { useState, useEffect } from "react";
-import Dropdown from 'react-bootstrap/Dropdown'
-import Form from 'react-bootstrap/Form'
-import ShyLink from "../components/shyLink";
+import React from "react";
+import Form from 'react-bootstrap/Form';
+import MovieTable from "../components/movieTable";
+import {Link} from "react-router-dom";
+import Page from "./page";
 
-function MovieSearchPage() {
-  const aMovies = {
-    "total_rows": 62059, "offset": 1929, "rows": [
-      { "id": "3aabb9ae22a9f0b0dbb6297c5931a44d", "key": "Aaah! Zombies!!", "value": null },
-      { "id": "4901986cc9baf4eb540a1322197df25b", "key": "Aaj Kal", "value": null },
-      { "id": "3aabb9ae22a9f0b0dbb6297c598fd5ab", "key": "Aakhari Decision", "value": null },
-      { "id": "a858c15f6c04ed4cc6cbb9ae2b64fe3f", "key": "Aaliyah", "value": null },
-      { "id": "5d9f4d0fb05807a3d6f00d30631df612", "key": "Aardvark", "value": null },
-      { "id": "a858c15f6c04ed4cc6cbb9ae2be8ba5a", "key": "Aardvark", "value": null },
-      { "id": "3aabb9ae22a9f0b0dbb6297c59d45094", "key": "Aaron Bacon", "value": null },
-      { "id": "b6686e981f0165765c463d7e5f26270b", "key": "Aaron Loves Angela", "value": null },
-      { "id": "3aabb9ae22a9f0b0dbb6297c5978a4af", "key": "Aaron Slick from Punkin Crick", "value": null },
-      { "id": "b6686e981f0165765c463d7e5f5979f0", "key": "Aaron... Albeit a Sex Hero", "value": null },
-      { "id": "48f66bd70de99a120a0b95146474d484", "key": "Aaron's Blood", "value": null },
-      { "id": "7545b2a1e610ec7baffad0500536a1ef", "key": "Aaron's House", "value": null }
-    ]
-  }
-
-  const Genres = [
-    { "name": "Comedy", "label": "Comedy" },
-    { "name": "Romance", "label": "Romance" },
-    { "name": "Horror", "label": "Horror" },
-    { "name": "Thriller", "label": "Thriller" },
-    { "name": "Crime", "label": "Crime" },
-    { "name": "Fantasy", "label": "Fantasy" },
-    { "name": "Mystery", "label": "Mystery" },
-    { "name": "Action", "label": "Action" },
-    { "name": "Adventure", "label": "Adventure" },
-    { "name": "Sci-Fi", "label": "Sci-Fi" },
-    { "name": "Drama", "label": "Drama" },
-    { "name": "War", "label": "War" },
-    { "name": "Family", "label": "Family" },
-    { "name": "Biography", "label": "Biography" },
-    { "name": "Music", "label": "Music" },
-    { "name": "Western", "label": "Western" },
-    { "name": "History", "label": "History" },
-    { "name": "Musical", "label": "Musical" },
-    { "name": "Animation", "label": "Animation" },
-    { "name": "Sport", "label": "Sport" },
-    { "name": "Film-Noir", "label": "Film-Noir" },
-    { "name": "News", "label": "News" },
-    { "name": "Game-Show", "label": "Game-Show" },
-    { "name": "Reality-TV", "label": "Reality-TV" },
-    { "name": "Talk-Show", "label": "Talk-Show" }
-  ]
-
-  const [movieSearch, setMovieSearch] = useState('');
-  const [movieYear, setMovieYear] = useState('');
-  const [movieGenre, setMovieGenre] = useState('');
-  const [userSearch, setUserSearch] = useState();
-  const [userYear, setUserYear] = useState();
-  const [userGenre, setUserGenre] = useState();
-
-  const handleChange = ((e) => {
-    console.log("event ", e)
-    console.log("event value ", e.target.value)
-    console.log("event name ", e.target.name)
-    switch (e.target.name) {
-      case 'movieGenre': setMovieGenre(e.target.value)
-      case 'movieSearch': setMovieSearch(e.target.value)
-      case 'movieYear': setMovieYear(e.target.value)
+class MovieSearchPage extends Page {
+    state = {
+        loading: true,
+        response: {
+            "_self_uri": "http://localhost:4000/api/movies",
+            "statistics_uri": "http://localhost:4000/api/movies/statistics",
+            "movies": [
+                {
+                    "movie_uri": "http://localhost:4000/api/movies/5fca76124e2e9e0d181f0264",
+                    "title": "#1 Serial Killer",
+                    "year": 2013,
+                    "users_rating": 5.5,
+                    "votes": "43",
+                    "image_url": "https://m.media-amazon.com/images/M/MV5BODk3NjU5NzU4N15BMl5BanBnXkFtZTgwODQwMDk4NTE@._V1_UY268_CR5,0,182,268_AL__QL50.jpg"
+                },
+                {
+                    "movie_uri": "http://localhost:4000/api/movies/5fca76934e2e9e0d181f8596",
+                    "title": "#5",
+                    "year": 2013,
+                    "users_rating": 6.6,
+                    "votes": "7",
+                    "image_url": "https://m.media-amazon.com/images/M/MV5BMTQ2MDg0ODAwMV5BMl5BanBnXkFtZTgwNTQ1NjkxMDE@._V1_UY268_CR8,0,182,268_AL__QL50.jpg"
+                },
+                {
+                    "movie_uri": "http://localhost:4000/api/movies/5fca76934e2e9e0d181f85a3",
+                    "title": "#50Fathers",
+                    "year": 2015,
+                    "users_rating": 4.6,
+                    "votes": "5",
+                    "image_url": "https://m.media-amazon.com/images/M/MV5BMGFlOGUyMjgtYTc4Yi00MGJjLWFiOTMtOWQ4Y2JkMmY1OGEzXkEyXkFqcGdeQXVyNjYxNTk1OTM@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
+                },
+                {
+                    "movie_uri": "http://localhost:4000/api/movies/5fca75c64e2e9e0d181ead32",
+                    "title": "#Captured",
+                    "year": 2017,
+                    "users_rating": 5.1,
+                    "votes": "758",
+                    "image_url": "https://m.media-amazon.com/images/M/MV5BZDBmYTEwZWMtNzc2OC00N2M5LWJmNGEtNDI5OTZiM2RmMDJkXkEyXkFqcGdeQXVyNTM3MDMyMDQ@._V1_UY268_CR9,0,182,268_AL__QL50.jpg"
+                },
+                {
+                    "movie_uri": "http://localhost:4000/api/movies/5fca75ca4e2e9e0d181eb405",
+                    "title": "#DigitalLivesMatter",
+                    "year": 2016,
+                    "users_rating": 6.1,
+                    "votes": "23",
+                    "image_url": "https://m.media-amazon.com/images/M/MV5BMzY0MDc2MjMtY2FmYy00Njk2LWE3ZmQtYmU1Yjg0YmRkOTkxXkEyXkFqcGdeQXVyNTIwMzAzMw@@._V1_UY268_CR9,0,182,268_AL__QL50.jpg"
+                },
+                {
+                    "movie_uri": "http://localhost:4000/api/movies/5fca75e54e2e9e0d181ed3ff",
+                    "title": "#Enough",
+                    "year": 2015,
+                    "users_rating": 2.9,
+                    "votes": "8",
+                    "image_url": "https://m.media-amazon.com/images/M/MV5BNGIxYTcxZGMtZWRhZC00MDVkLWJkODYtYzU2NDIyY2U0ODZlXkEyXkFqcGdeQXVyNjQwNzUwNTE@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
+                },
+                {
+                    "movie_uri": "http://localhost:4000/api/movies/5fca765b4e2e9e0d181f4180",
+                    "title": "#Followme",
+                    "year": 2019,
+                    "users_rating": 3.7,
+                    "votes": "531",
+                    "image_url": "https://m.media-amazon.com/images/M/MV5BMDVjOWI0ZjMtZjk1Yy00N2MxLWJhYWUtZjViYTYyYTY5ZDJlXkEyXkFqcGdeQXVyNjMwMjM3ODE@._V1_UY268_CR9,0,182,268_AL__QL50.jpg"
+                },
+                {
+                    "movie_uri": "http://localhost:4000/api/movies/5fca76644e2e9e0d181f5247",
+                    "title": "#Horror",
+                    "year": 2015,
+                    "users_rating": 3,
+                    "votes": "3,333",
+                    "image_url": "https://m.media-amazon.com/images/M/MV5BMjM5ODg2NjU2Nl5BMl5BanBnXkFtZTgwMTY0NTIwMDI@._V1_UY268_CR2,0,182,268_AL__QL50.jpg"
+                },
+                {
+                    "movie_uri": "http://localhost:4000/api/movies/5fca75d44e2e9e0d181ebd33",
+                    "title": "#Like",
+                    "year": 2019,
+                    "users_rating": 7.1,
+                    "votes": "11",
+                    "image_url": "https://m.media-amazon.com/images/M/MV5BNmI5NzdkYmEtZDIzNi00MjIwLTgwYzYtZTllODY3YWI4NGIxXkEyXkFqcGdeQXVyNjUxMjc1OTM@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
+                },
+                {
+                    "movie_uri": "http://localhost:4000/api/movies/5fca75c64e2e9e0d181eadc5",
+                    "title": "#Lucky Number",
+                    "year": 2015,
+                    "users_rating": 5,
+                    "votes": "444",
+                    "image_url": "https://m.media-amazon.com/images/M/MV5BM2E3ODc4YjAtMGMxMi00YWU1LWEzZTMtZTNiZGQ5NDkzNDZhXkEyXkFqcGdeQXVyMDc3ODUxNg@@._V1_UY268_CR12,0,182,268_AL__QL50.jpg"
+                }
+            ]
+        },
+        error: false,
+        page: 0,
     }
-  });
 
-  const handleSubmitMovies = ((e) => {
-    e.preventDefault()
-    //let searchTerm = e.target[0].value
-    console.log("e ", e)
-    console.log("e ", e.target)
-    console.log({ movieSearch })
-    //console.log(searchTerm)
-  });
-
-  const handleChangeUser = ((e) => {
-    console.log("event ", e.target.value)
-    setUserSearch(e.target.value)
-  });
-
-  const handleSubmitUser = ((e) => {
-    e.preventDefault()
-    //let searchTerm = e.target[0].value
-    console.log("e ", e)
-    console.log("e ", e.target)
-    console.log({ userSearch })
-    //console.log(searchTerm)
-  });
-
-  const handleMovieGenre = ((e) => {
-    console.log("Genre ", e)
-  });
-
-  const hGenres = () => {
-    Genres.map((item) => {
-      console.log(item)
-    })
-  }
-  function years(start, end) {
-    var ans = [];
-    for (let i = start; i >= end; i--) {
-      ans.push(i);
+    renderTitle() {
+        return <h3 className="text-center"> Search Movie </h3>;
     }
-    return ans;
-  }
 
-  const year = years(2021, 1900)
-  //console.log("pp ",year)
+    getLinks() {
+        return {forward: <Link className="text-warning" to="/search-movie/statistics">{"See statistics >"}</Link>};
+    }
 
-
-  useEffect(() => {
-    //console.log(Genres)
-  });
-  return (
-    <div className="about">
-      <ShyLink label="See Statistics >" route="/search-movie/statistics"/>
-      <ShyLink label="movie 123" route="/movie-details/123"/>
-      <div className="container">
-      <div className="upperPadding">
-        <div className="row">
-          
-          <div className="col-sm">
-          <Form>
-            <Form.Group controlId="searchMovie">
-            </Form.Group>
-            <Form.Group>
-              <Form.Control type="text" aria-label="movieSearch" name="movieSearch"
-                onChange={handleChange} placeholder="Search movie"
-              />
-            </Form.Group>
-            <Form.Group controlId="MovieGenres">
-              <Form.Control defaultValue="Genre" as="select"
-                onChange={handleChange} aria-label="Genre" name="movieGenre">
-                <option>Genre</option>
-                {Genres.map(p => (
-                  <option key={p.name} value={p.name}>{p.label}</option>
-                ))}
-              </Form.Control>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control as="select" aria-label="year" name="movieYear"
-                onChange={handleChange} defaultValue="Choose year" >
-                <option>Year</option>
-                {year.map(p => (
-                  <option key={p} value={p}>{p}</option>
-                ))}
-              </Form.Control>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control type="submit" value="Submit"
-                onClick={handleSubmitMovies} />
-            </Form.Group>
-          </Form>
-          </div>
-          <div className="col-sm">
-          <Form>
-            <Form.Group controlId="searchUser">
-            </Form.Group>
-            <Form.Group>
-              <Form.Control type="text" aria-label="userSearch" name="userSearch"
-                onChange={handleChangeUser} placeholder="Search Actor or Director"
-              />
-            </Form.Group>
-            <Form.Group controlId="UserGenres">
-              <Form.Control defaultValue="Genre" as="select"
-                onChange={handleChangeUser} aria-label="Genre" name="userGenre">
-        <option>Genre</option>
-                {Genres.map(p => (
-                  <option key={p.name} value={p.name}>{p.label}</option>
-                ))}
-              </Form.Control>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control as="select" aria-label="year" name="userYear"
-                onChange={handleChangeUser} defaultValue="Choose year">
-                <option>Year</option>
-                {year.map(p => (
-                  <option key={p} value={p}>{p}</option>
-                ))}
-              </Form.Control>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control type="submit" value="submit"
-                onClick={handleSubmitUser} />
-            </Form.Group>
-          </Form>
-          </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+    renderContent() {
+        return (
+            <React.Fragment>
+                <Form>
+                    <div className="row mb-4">
+                        <div className="col-sm">
+                            <Form.Control type="text" placeholder="title"/>
+                        </div>
+                        <div className="col-2">
+                            <Form.Control className="bg-primary text-white" type="submit" value="Search"/>
+                        </div>
+                    </div>
+                    <div className="row mb-4">
+                        <div className="col">
+                            <Form.Control type="text" placeholder="actor"/>
+                        </div>
+                        <div className="col">
+                            <Form.Control type="text" placeholder="director"/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <Form.Control type="text" placeholder="genre"/>
+                        </div>
+                        <div className="col">
+                            <Form.Control type="text" placeholder="year"/>
+                        </div>
+                        <div className="col">
+                            <Form.Control type="text" placeholder="sort by"/>
+                        </div>
+                        <div className="col">
+                            <Form.Control type="text" placeholder="order"/>
+                        </div>
+                    </div>
+                </Form>
+                <div className="m-4">
+                    <MovieTable movies={this.state.response.movies}/>
+                </div>
+                <div className="text-center row">
+                    <div className="col-sm text-right">
+                        <button type="button" className="btn  btn-secondary disabled"> previous</button>
+                    </div>
+                    <div className="col-sm align-middle"><p> {this.state.page} </p></div>
+                    <div className="col-sm text-left">
+                        <button type="button" className="btn btn-secondary"> next</button>
+                    </div>
+                </div>
+            </React.Fragment>
+        );
+    }
 }
 
 export default MovieSearchPage;

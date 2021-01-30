@@ -1,172 +1,68 @@
-import React, { Component } from "react";
-import Form from "../components/form";
-import ShyLink from "../components/shyLink";
+import React from "react";
+import {Link} from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import fields from "../components/fields.json"
+import Page from "./page";
 
-class MovieAddPage extends Component {
-  state = {
-    movie: {
-      title: "",
-      rating: "",
-      year: "",
-      user_rating: "",
-      votes: "",
-      metascore: "",
-      img_url: "",
-      countries: "",
-      languages: "",
-      actors: "",
-      genre: "",
-      tagline: "",
-      description: "",
-      directors: "",
-      runtime: "",
-      imdb_url: "",
-    },
-  };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(this.state.movie, "submitted");
+class MovieAddPage extends Page {
+    state = {
+        movie: {
+            title: "",
+            rating: "",
+            year: "",
+            user_rating: "",
+            votes: "",
+            metascore: "",
+            img_url: "",
+            countries: "",
+            languages: "",
+            actors: "",
+            genre: "",
+            tagline: "",
+            description: "",
+            directors: "",
+            runtime: "",
+            imdb_url: "",
+        },
+    };
 
-    // function to get input from state to new movie in api?
-  };
+    formatField = function (movie, {name, prompt}) {
+        return (
+            <li className="list-group-item">
+                <div className="row">
+                    <div className="col-3 align-middle">
+                        <b>{prompt}</b>
+                    </div>
+                    <div className="col">
+                        <Form.Control type="text" placeholder={name} value={movie[name]}/>
+                    </div>
+                </div>
+            </li>
+        );
+    }
 
-  handleChange = ({ currentTarget: input }) => {
-    const movie = { ...this.state.movie };
-    movie[input.name] = input.value;
-    this.setState({ movie });
-  };
+    renderTitle() {
+        return (<h3 className="text-center"> Create Movie </h3>);
+    }
 
-  render() {
-    const { movie } = this.state;
+    getLinks() {
+        return {back:<Link className="text-secondary" to="/search-movie">{"< Search other movies"}</Link>};
+    }
 
-    return (
-      <React.Fragment>
-        <h1>Add new movie</h1>
-        <ShyLink label="New Movie details >"/>
-        <div className="py-5 container">
-          <form onSubmit={this.handleSubmit}>
-            <Form
-              name="title"
-              label="Title"
-              value={movie.title}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="rating"
-              label="Rating"
-              value={movie.rating}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="year"
-              label="Year"
-              value={movie.year}
-              type="number"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="user_rating"
-              label="User rating"
-              value={movie.user_rating}
-              type="number"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="votes"
-              label="Votes"
-              value={movie.votes}
-              type="number"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="metascore"
-              label="Metascore"
-              value={movie.metascore}
-              type="number"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="img_url"
-              label="Image url"
-              value={movie.img_url}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="countries"
-              label="Countries (separate by comma)"
-              value={movie.countries}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="languages"
-              label="Languages (separate by comma)"
-              value={movie.languages}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="actors"
-              label="Actors (separate by comma)"
-              value={movie.actors}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="genre"
-              label="Genre (separate by comma)"
-              value={movie.genre}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="tagline"
-              label="Tagline"
-              value={movie.tagline}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="description"
-              label="Description"
-              value={movie.description}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="directors"
-              label="Directors (separate by comma)"
-              value={movie.directors}
-              type="text"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="runtime"
-              label="Runtime in minutes"
-              value={movie.runtime}
-              type="number"
-              onChange={this.handleChange}
-            />
-            <Form
-              name="imdb_url"
-              label="IMDB url"
-              value={movie.imdb_url}
-              type="text"
-              onChange={this.handleChange}
-            />
-
-            <button className="btn btn-primary">Submit form</button>
-          </form>
-        </div>
-        <div className="py-5" />
-        <div className="py-5" />
-      </React.Fragment>
-    );
-  }
+    renderContent() {
+        const {movie} = this.state;
+        return (
+            <React.Fragment>
+                <ul className="list-group">
+                    {fields.map((field) => this.formatField(movie, field))}
+                </ul>
+                <div className="ml-5 mr-5 mt-4">
+                    <Form.Control className="bg-warning text-white" type="submit" value="Add Movie"/>
+                </div>
+            </React.Fragment>
+        );
+    }
 }
 
 export default MovieAddPage;
