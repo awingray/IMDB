@@ -1,5 +1,5 @@
 import React from "react";
-import StatsComponent from "../components/statsComponent";
+import Statistics from "../components/statistics";
 import Loading from "../components/loading";
 import {Link} from "react-router-dom";
 import Page from "./page";
@@ -37,7 +37,7 @@ class MovieStatsPage extends Page {
         let {loading, response, error} = this.state;
         if (loading) return <Loading />;
         if (error) return <p className="text-justify text-center text-error">{error}</p>
-        return <StatsComponent response={response}/>;
+        return <Statistics response={response}/>;
     };
 
     renderTitle() {
