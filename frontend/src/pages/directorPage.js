@@ -1,8 +1,9 @@
-import React, {Component} from "react";
+import React from "react";
 import {Link} from "react-router-dom";
 import MovieTable from "../components/movieTable";
+import Page from "./page";
 
-class DirectorPage extends Component {
+class DirectorPage extends Page {
     state = {
         loading: true,
         response: {
@@ -49,35 +50,25 @@ class DirectorPage extends Component {
         error: false
     };
 
-    getLinks(){
-        return (
-            <div className="row">
-                <div className="col-md-6>">
-                    <Link className="text-secondary" to="/search-director">{"< Search other directors"}</Link>
-                </div>
-            </div>
-        );
+    renderTitle() {
+        return <h3 className="text-center"> Director Details </h3>;
     }
 
-    render() {
-        let {name, dob, bio, movies} = this.state.response;
+    getLinks() {
+        return {back: <Link className="text-secondary" to="/search-director">{"< Search other directors"}</Link>};
+    }
+
+    renderContent() {
+        const {name, dob, bio, movies} = this.state.response;
+
         return (
-            <div className="container mt-2">
-                <div className="card">
-                    <div className="card-header">
-                        <h3 className="text-center"> Director Details </h3>
-                        {this.getLinks()}
-                    </div>
-                    <div className="card-body">
-                        <ul className="list-group">
-                            <li className="list-group-item"> <b>Name:</b> {name} </li>
-                            <li className="list-group-item"> <b>Date of Birth:</b> {dob} </li>
-                            <li className="list-group-item"> <b>Biography:</b> {bio} </li>
-                            <li className="list-group-item"> <b>Directed:</b> <MovieTable movies={movies.slice(0,10)}/></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <ul className="list-group">
+                <li className="list-group-item"><b>Name:</b> {name} </li>
+                <li className="list-group-item"><b>Date of Birth:</b> {dob} </li>
+                <li className="list-group-item"><b>Biography:</b> {bio} </li>
+                <li className="list-group-item"><b>Directed:</b> <MovieTable movies={movies.slice(0, 10)}/>
+                </li>
+            </ul>
         );
     }
 }

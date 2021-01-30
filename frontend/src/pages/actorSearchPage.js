@@ -1,9 +1,9 @@
-import React, {Component} from "react";
+import React from "react";
 import Form from 'react-bootstrap/Form'
 import PersonTable from "../components/personTable";
+import Page from "./page";
 
-class ActorSearchPage extends Component {
-
+class ActorSearchPage extends Page {
     state = {
         loading: true,
         response: {
@@ -24,44 +24,42 @@ class ActorSearchPage extends Component {
         page: 0
     }
 
-    handleChange() {
-        // TODO!
+    getLinks() {
+        return {};
     }
 
-    handleSearch() {
-        // TODO!
+    renderTitle() {
+        return <h3 className="text-center"> Search Actor </h3>;
     }
 
-    render() {
+    renderContent() {
         return (
-            <div className="container mt-2">
-                <div className="card">
-                    <div className="card-header">
-                        <h3 className="text-center"> Search Actor </h3>
+            <React.Fragment>
+                <Form>
+                    <div className="row">
+                        <div className="col-sm">
+                            <Form.Control type="text" placeholder="name" />
+                        </div>
+                        <div className="col-2">
+                            <Form.Control className="bg-primary text-white" type="submit" value="Search" />
+                        </div>
                     </div>
-                    <div className="card-body">
-                        <Form>
-                            <div className="row">
-                                <div className="col-sm">
-                                    <Form.Control type="text" onChange={this.handleChange()} placeholder="name"/>
-                                </div>
-                                <div className="col-2">
-                                    <Form.Control className="bg-primary text-white" type="submit" value="Search"
-                                                  onClick={this.handleSearch()}/>
-                                </div>
-                            </div>
-                        </Form>
-                        <div className="m-4">
-                            <PersonTable people={this.state.response.actors}/>
-                        </div>
-                        <div className="text-center row">
-                            <div className="col-sm text-right"><button type="button" className="btn  btn-secondary disabled"> previous </button></div>
-                            <div className="col-sm align-middle"><p> {this.state.page} </p></div>
-                            <div className="col-sm text-left"><button type="button" className="btn btn-secondary"> next </button></div>
-                        </div>
+                </Form>
+                <div className="m-4">
+                    <PersonTable people={this.state.response.actors}/>
+                </div>
+                <div className="text-center row">
+                    <div className="col-sm text-right">
+                        <button type="button" className="btn  btn-secondary disabled"> previous </button>
+                    </div>
+                    <div className="col-sm align-middle">
+                        <p> {this.state.page} </p>
+                    </div>
+                    <div className="col-sm text-left">
+                        <button type="button" className="btn btn-secondary"> next </button>
                     </div>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }

@@ -6,7 +6,9 @@ class MovieTable extends Component {
         return (
             <tr>
                 <td className="text-center">
-                    <img className="h-25" src={image_url} alt={title}/>
+                    <div style={{height:75}}>
+                        <img className="h-100" src={image_url} alt={title}/>
+                    </div>
                 </td>
                 <td className="align-middle">
                     {title}
@@ -28,8 +30,9 @@ class MovieTable extends Component {
         const {movies} = this.props;
 
         return (
-            <table className="table table-striped table-condensed">
-                <thead>
+            <div className="w-100 overflow-auto">
+                <table className="table table-striped">
+                    <thead>
                     <tr>
                         <th/>
                         <th>Title</th>
@@ -37,11 +40,12 @@ class MovieTable extends Component {
                         <th>Rating</th>
                         <th>Votes</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     {movies.map(this.formatMovie)}
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         );
     }
 }

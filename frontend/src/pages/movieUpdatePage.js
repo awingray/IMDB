@@ -1,9 +1,10 @@
-import React, {Component} from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
 import {Link} from "react-router-dom";
 import fields from "../components/fields.json";
+import Page from "./page";
 
-class MovieUpdatePage extends Component {
+class MovieUpdatePage extends Page {
     state = {
         movie: {
             "_self_uri": "http://localhost:4000/api/movies/5fca75c44e2e9e0d181ea696",
@@ -27,7 +28,6 @@ class MovieUpdatePage extends Component {
         },
     };
 
-
     formatField = function (movie, {name, prompt}) {
         return (
             <li className="list-group-item">
@@ -43,43 +43,33 @@ class MovieUpdatePage extends Component {
         );
     }
 
+    renderTitle() {
+        return <h3 className="text-center"> Update Movie </h3>;
+    }
+
     getLinks() {
-        return (
-            <div className="row">
-                <div className="col-md-6">
-                    <Link className="text-secondary" to="/movie-details/123">{"< Back to movie details"}</Link>
-                </div>
-            </div>
-        );
+        return {back: <Link className="text-secondary" to="/movie-details/123">{"< Back to movie details"}</Link>};
     }
 
-    render() {
+    renderContent() {
         const {movie} = this.state;
-
         return (
-            <div className="container mt-2 mb-2">
-                <div className="card">
-                    <div className="card-header">
-                        <h3 className="text-center"> Update Movie </h3>
-                        {this.getLinks()}
+            <React.Fragment>
+                <ul className="list-group">
+                    {fields.map((field) => this.formatField(movie, field))}
+                </ul>
+                <div className="row mt-4 ">
+                    <div className="col ml-5 mr-5 mb-2">
+                        <Form.Control className="bg-danger text-white" type="submit" value="Delete Movie"/>
                     </div>
-                    <div className="card-body">
-                        <ul className="list-group">
-                            {fields.map((field) => this.formatField(movie, field))}
-                        </ul>
-                    </div>
-                    <div className="row">
-                        <div className="col ml-5 mr-5 mb-2">
-                            <Form.Control className="bg-danger text-white" type="submit" value="Delete Movie"/>
-                        </div>
-                        <div className="col ml-5 mr-5 mb-2">
-                            <Form.Control className="bg-warning text-white" type="submit" value="Update Movie"/>
-                        </div>
+                    <div className="col ml-5 mr-5 mb-2">
+                        <Form.Control className="bg-warning text-white" type="submit" value="Update Movie"/>
                     </div>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
+
 }
 
 export default MovieUpdatePage;

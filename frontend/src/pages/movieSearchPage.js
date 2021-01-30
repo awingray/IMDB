@@ -1,9 +1,10 @@
-import React, {Component} from "react";
+import React from "react";
 import Form from 'react-bootstrap/Form';
 import MovieTable from "../components/movieTable";
 import {Link} from "react-router-dom";
+import Page from "./page";
 
-class MovieSearchPage extends Component {
+class MovieSearchPage extends Page {
     state = {
         loading: true,
         response: {
@@ -96,76 +97,64 @@ class MovieSearchPage extends Component {
         page: 0,
     }
 
+    renderTitle() {
+        return <h3 className="text-center"> Search Movie </h3>;
+    }
+
     getLinks() {
-        return (
-            <div className="row">
-                <div className="col-md-6"/>
-                <div className="col-md-6 text-right">
-                    <Link className="text-warning" to="/search-movie/statistics">{"See statistics >"}</Link>
-                </div>
-            </div>
-        );
+        return {forward: <Link className="text-warning" to="/search-movie/statistics">{"See statistics >"}</Link>};
     }
 
-    render() {
+    renderContent() {
         return (
-            <div className="container mt-2">
-                <div className="card">
-                    <div className="card-header">
-                        <h3 className="text-center"> Search Movie </h3>
-                        {this.getLinks()}
+            <React.Fragment>
+                <Form>
+                    <div className="row mb-4">
+                        <div className="col-sm">
+                            <Form.Control type="text" placeholder="title"/>
+                        </div>
+                        <div className="col-2">
+                            <Form.Control className="bg-primary text-white" type="submit" value="Search"/>
+                        </div>
                     </div>
-                    <div className="card-body">
-                        <Form>
-                            <div className="row mb-4">
-                                <div className="col-sm">
-                                    <Form.Control type="text" placeholder="title"/>
-                                </div>
-                                <div className="col-2">
-                                    <Form.Control className="bg-primary text-white" type="submit" value="Search"/>
-                                </div>
-                            </div>
-                            <div className="row mb-4">
-                                <div className="col">
-                                    <Form.Control type="text" placeholder="actor"/>
-                                </div>
-                                <div className="col">
-                                    <Form.Control type="text" placeholder="director"/>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col">
-                                    <Form.Control type="text" placeholder="genre"/>
-                                </div>
-                                <div className="col">
-                                    <Form.Control type="text" placeholder="year"/>
-                                </div>
-                                <div className="col">
-                                    <Form.Control type="text" placeholder="sort by"/>
-                                </div>
-                                <div className="col">
-                                    <Form.Control type="text" placeholder="order"/>
-                                </div>
-                            </div>
-                        </Form>
-                        <div className="m-4">
-                            <MovieTable movies={this.state.response.movies}/>
+                    <div className="row mb-4">
+                        <div className="col">
+                            <Form.Control type="text" placeholder="actor"/>
                         </div>
-                        <div className="text-center row">
-                            <div className="col-sm text-right">
-                                <button type="button" className="btn  btn-secondary disabled"> previous</button>
-                            </div>
-                            <div className="col-sm align-middle"><p> {this.state.page} </p></div>
-                            <div className="col-sm text-left">
-                                <button type="button" className="btn btn-secondary"> next</button>
-                            </div>
+                        <div className="col">
+                            <Form.Control type="text" placeholder="director"/>
                         </div>
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <Form.Control type="text" placeholder="genre"/>
+                        </div>
+                        <div className="col">
+                            <Form.Control type="text" placeholder="year"/>
+                        </div>
+                        <div className="col">
+                            <Form.Control type="text" placeholder="sort by"/>
+                        </div>
+                        <div className="col">
+                            <Form.Control type="text" placeholder="order"/>
+                        </div>
+                    </div>
+                </Form>
+                <div className="m-4">
+                    <MovieTable movies={this.state.response.movies}/>
+                </div>
+                <div className="text-center row">
+                    <div className="col-sm text-right">
+                        <button type="button" className="btn  btn-secondary disabled"> previous</button>
+                    </div>
+                    <div className="col-sm align-middle"><p> {this.state.page} </p></div>
+                    <div className="col-sm text-left">
+                        <button type="button" className="btn btn-secondary"> next</button>
                     </div>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
-
 }
 
 export default MovieSearchPage;
