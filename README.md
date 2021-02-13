@@ -50,8 +50,9 @@ It uses the module view controller (MVC) architecture.
 
 ![Mern Stack](images/mern.png)
 
-The motivation behind using this stack is because this stack allows for quick development.
-Additional because the stack uses javascript for everything we don't have to switch between different programming languages.
+The motivation behind using this stack is because this stack allows for quick development, since it is efficient and mmakes use of common HTML like language JSX.
+Additional because the stack uses javascript for everything we don't have to switch between different programming languages. 
+Other advantages of MERN are that it is very good in terms of UI rendering and performance, and all technologies involved are open-source.
 
 ## Running 
 *If doesn't exist, create a blank file called: `.env` and put in:*
@@ -78,3 +79,4 @@ See `utility` folder from the first backend iteration
 `database/controllers` -> all functionalities here
 
 `database/models` -> models for everything in the app (actors/movies/users etc.)
+/
