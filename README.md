@@ -53,6 +53,7 @@ It uses the module view controller (MVC) architecture.
 The motivation behind using this stack is because this stack allows for quick development, since it is efficient and mmakes use of common HTML like language JSX.
 Additional because the stack uses javascript for everything we don't have to switch between different programming languages. 
 Other advantages of MERN are that it is very good in terms of UI rendering and performance, and all technologies involved are open-source.
+The MERN stack is similar to the MEAN stack, but in our case there are some advantages to using MERN (with React) compared to MEAN (with Angular). Most importantly, Angular has a steeper learing curve than React, and React offers better documentation. Because of this it seemed better to choose the MERN stack, since part of our group didn't really have experience with web development.
 
 ## Running 
 *If doesn't exist, create a blank file called: `.env` and put in:*
