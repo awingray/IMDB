@@ -30,7 +30,7 @@ This subject to change and hasn't been implemented yet.
 ### Database UML diagram
 The following diagram shows how the data is sorted in the api's database.
 
-![UML Diagram](images/api_uml.png)
+![UML Diagram](images/api_uml2.png)
 - *Users* is the collection of all users using the api.
 - *User* is somebody that uses the api. A user has a list of *Favorites*.
 - *Favorites* is a list of movies for a single user.
