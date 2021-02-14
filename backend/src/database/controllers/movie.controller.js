@@ -9,6 +9,8 @@ const Movie = require("../models/movie.model.js");
 // Formatter used to format json responses
 const formatter = require("../../helpers/formatter");
 
+const csvConverter = require("../../helpers/converter");
+
 // Validation used to check user input
 const movieValidation = require("../validation/movie.validation.js");
 const paginationValidation = require("../validation/pagination.validation.js");
@@ -49,11 +51,25 @@ async function getMovieList({page = 0, perPage = 10, sort = 'title', order = "as
  * @returns {Promise<void>} A promise to send a response.
  */
 exports.searchMovies = async function (req, res) {
+
     try {
         validation.query(req, movieValidation.filterSchema, paginationValidation.schema, movieValidation.sortSchema);
         let movies = await getMovieList(req.query);
         let result = await formatter.formatMovies(movies, req.query);
-        apiResponse.sendSuccess(res, successCode.search, result);
+        if (typeof req.query.file_type === "undefined" || req.query.file_type == "json"){
+            console.log("file_type:", req.query.file_type);
+            apiResponse.sendSuccess(res, successCode.search, result);
+        } else if (req.query.file_type == "csv") {
+            let csv = csvConverter.convert2Csv(result);
+            res.set("Content-Type", "text/csv");
+            apiResponse.sendSuccess(res, successCode.search, csv);
+        } else {
+            res.status(415);
+            throw errorCode.makeError("Unsupported Media Type", "Media type is not supported");
+        }
+        //console.log("req", req);
+        //  console.log("csv", csv);
+        // console.log("result ",result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -66,6 +82,7 @@ exports.searchMovies = async function (req, res) {
  * @returns {Promise<*>} A promise to return all of the matching documents.
  */
 async function getMovie({id}) {
+    console.log("result ",result);
     let movie = await Movie.findById(id);
     if (!movie) throw errorCode.makeError('PathError', 'movie doesn\'t exist');
     return movie;

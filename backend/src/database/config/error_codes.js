@@ -14,6 +14,7 @@ module.exports = {
     /**
      * Error codes for different errors that occur in the api.
      */
+    "Unsupported Media Type" : 415,
     "DatabaseError" : 500,
     "BodyValidationError" : 422,
     "PathValidationError": 404,

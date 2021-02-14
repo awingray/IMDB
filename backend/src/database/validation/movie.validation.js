@@ -38,6 +38,7 @@ const filterSchema = Joi.object().keys({
     actor: Joi.string(),
     director: Joi.string(),
     genre: Joi.string(),
+    file_type: Joi.string(),
 });
 
 /**
