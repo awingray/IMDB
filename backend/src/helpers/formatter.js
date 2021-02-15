@@ -115,8 +115,6 @@ async function formatActorEntry(actor) {
     return {
         actor_uri: 'http://localhost:4000/api/actors/' + actor.id,
         name: actor.name || '',
-        gender: actor.gender || '',
-        date_of_birth: actor.dob || ''
     };
 }
 

@@ -49,11 +49,15 @@ async function getMovieList({page = 0, perPage = 10, sort = 'title', order = "as
  * @returns {Promise<void>} A promise to send a response.
  */
 exports.searchMovies = async function (req, res) {
+
     try {
         validation.query(req, movieValidation.filterSchema, paginationValidation.schema, movieValidation.sortSchema);
         let movies = await getMovieList(req.query);
         let result = await formatter.formatMovies(movies, req.query);
-        apiResponse.sendSuccess(res, successCode.search, result);
+        apiResponse.sendSuccess(req, res, successCode.search, result);
+        //console.log("req", req);
+        //  console.log("csv", csv);
+        // console.log("result ",result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -82,7 +86,7 @@ exports.movieDetails = async function (req, res) {
         validation.path(req, movieValidation.idSchema);
         let movie = await getMovie(req.params);
         let result = await formatter.formatMovieDetails(movie);
-        apiResponse.sendSuccess(res, successCode.get, result);
+        apiResponse.sendSuccess(req, res, successCode.get, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -111,7 +115,7 @@ exports.removeMovie = async function (req, res) {
         validation.path(req, movieValidation.idSchema);
         let movie = await deleteMovie(req.params);
         let result = await formatter.formatMovieDetails(movie);
-        apiResponse.sendSuccess(res, successCode.delete, result);
+        apiResponse.sendSuccess(req, res, successCode.delete, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -142,7 +146,7 @@ exports.editMovie = async function (req, res) {
         validation.body(req, movieValidation.infoMovieSchema);
         let movie = await updateMovie(req.params, req.body);
         let result = await formatter.formatMovieDetails(movie);
-        apiResponse.sendSuccess(res, successCode.update, result);
+        apiResponse.sendSuccess(req, res, successCode.update, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -175,7 +179,7 @@ exports.createMovie = async function (req, res) {
         validation.body(req, movieValidation.infoMovieSchema, movieValidation.titleMovieSchema);
         let movie = await addMovie(req.body);
         let result = await formatter.formatMovieDetails(movie);
-        apiResponse.sendSuccess(res, successCode.create, result);
+        apiResponse.sendSuccess(req, res, successCode.create, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -222,7 +226,7 @@ exports.computeStatistics = async function(req, res){
         validation.query(req, movieValidation.filterSchema);
         let distribution = await getDistribution(req.query);
         let result = await formatter.formatStatistics(distribution, req.query);
-        apiResponse.sendSuccess(res, successCode.computation, result);
+        apiResponse.sendSuccess(req, res, successCode.computation, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }

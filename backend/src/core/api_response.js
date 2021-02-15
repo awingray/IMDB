@@ -1,5 +1,7 @@
 const errorCode = require('../database/config/error_codes');
 
+const csvConverter = require("../helpers/converter");
+
 /**
  * This function sends a response to the user in case of success.
  * @param res The response to the user.
@@ -7,7 +9,17 @@ const errorCode = require('../database/config/error_codes');
  * @param message The message to send to the user.
  * @param result The data to return to the user.
  */
-function sendSuccess(res, {status, message}, result) {
+function sendSuccess(req, res, {status, message}, result) {
+    // if no type file or JSON is requested, JSON is used
+    if(req.header("accept") === "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" || req.header("accept") === "application/json"){
+    } else if (req.header("accept") === "text/csv"){
+        let csv = csvConverter.convert2Csv(result); // Result is converted to JSON
+        result = csv;
+        res.set("Content-Type", "text/csv");
+    } else {
+        res.status(415);
+        throw errorCode.makeError("Unsupported Media Type", "Media type is not supported"); 
+    }
     return res.status(status).send({
         status: 1,
         message: message,
