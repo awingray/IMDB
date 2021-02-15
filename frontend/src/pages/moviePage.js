@@ -24,7 +24,7 @@ class MoviePage extends Page {
     getLinks() {
         return {
             back: <Link className="text-secondary" to="/search-movie">{"< Search other movies"}</Link>,
-            forward: <Link className="text-warning" to="/movie-details/123/edit">{"Edit information >"}</Link>
+            forward: <Link className="text-warning" to={"/movie-details/" + this.props.match.params.id + "/edit"}>{"Edit information >"}</Link>
         };
     }
 

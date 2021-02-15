@@ -60,7 +60,7 @@ async function formatMovieDetails(movie = {}) {
         year: movie.year || '',
         users_rating: movie.users_rating || '',
         votes: movie.votes || '',
-        meta_score: movie.metascore || '',
+        metascore: movie.metascore || '',
         img_url: movie.img_url || '',
         countries: movie.countries || [],
         languages: movie.languages || [],
