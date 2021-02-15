@@ -67,8 +67,6 @@ Note: make sure the back-end is running otherwise the front-end will not work.
 
 By default JSON is used. To request csv simply add "accept:text/csv" to the header.
 
-### Deploying
-<!-- TODO --->
 
 ## Folders
 ### Back-end
