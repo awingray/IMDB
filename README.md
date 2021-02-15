@@ -65,6 +65,8 @@ Now you can run the front-end website: `npm run`,
 this should open a webpage in your browser.
 Note: make sure the back-end is running otherwise the front-end will not work.
 
+By default JSON is used. To request csv simply add "accept:text/csv" to the header.
+
 ### Deploying 
 <!-- TODO --->
 
