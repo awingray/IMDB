@@ -1,13 +1,29 @@
 import React, {Component} from "react";
+import {Link} from "react-router-dom";
 
 class PersonTable extends Component {
-    formatPerson({name, dob}) {
-        return (
-            <tr>
-                <td className="align-middle"> {name} </td>
-                <td className="align-middle"> {dob} </td>
-            </tr>
-        );
+    formatPerson(person) {
+        if (person.director_uri) {
+            let directorRoute = "/director-details/" + person.director_uri.split("/").slice(-1)[0];
+            return (
+                <tr key={person.director_uri}>
+                    <td className="align-middle">
+                        <Link to={directorRoute} className="text-dark">
+                            {person.name}
+                        </Link>
+                    </td>
+                </tr>
+            );
+        } else {
+            let actorRoute = "/director-details/" + person.actor_uri.split("/").slice(-1)[0];
+            return (
+                <tr key={person.actor_uri}>
+                    <Link to={actorRoute} className="text-dark">
+                        {person.name}
+                    </Link>
+                </tr>
+            );
+        }
     }
 
     render() {
@@ -18,7 +34,6 @@ class PersonTable extends Component {
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Date of Birth</th>
                     </tr>
                 </thead>
                 <tbody>
