@@ -9,6 +9,8 @@ const Person = require("../models/person.model.js");
 // Formatter used to format json responses
 const formatter = require("../../helpers/formatter");
 
+const Actor = require("../models/actor.model");
+
 // Validation used to check user input
 const personValidation = require("../validation/person.validation");
 const paginationValidation = require("../validation/pagination.validation.js");
@@ -29,7 +31,7 @@ async function getActorList({page=0, perPage = 10, sort = 'name', order = "asc",
     let filters = {};
     if (name) filters.name = {$regex: name};
     try {
-        return await Person.find(filters).limit(Number(perPage)).skip(perPage * page).sort({[sort]: order});
+        return await Actor.find(filters).limit(Number(perPage)).skip(perPage * page).sort({[sort]: order});
     } catch (error){
         throw errorCode.makeError('DatabaseError', 'database query failed');
     }
@@ -61,7 +63,7 @@ exports.searchActors = async function (req, res) {
  * @return {Promise<void>} A promise to return all of the matching documents.
  */
 async function getActor({id}) {
-    let actor = await Person.findById(id);
+    let actor = await Actor.findById(id);
     if (!actor) throw errorCode.makeError('PathError', 'actor doesn\'t exist');
     return actor;
 }
