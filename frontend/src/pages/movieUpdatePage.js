@@ -88,7 +88,6 @@ class MovieUpdatePage extends Page {
                 this.props.history.push("/movie-details/" + this.props.match.params.id);
             }
         );
-
     }
 
     handleDelete = () => {

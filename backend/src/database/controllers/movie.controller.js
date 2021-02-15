@@ -139,7 +139,6 @@ async function updateMovie({id}, update) {
 exports.editMovie = async function (req, res) {
     try {
         validation.path(req, movieValidation.idSchema);
-        console.log(req.body);
         validation.body(req, movieValidation.infoMovieSchema);
         let movie = await updateMovie(req.params, req.body);
         let result = await formatter.formatMovieDetails(movie);
