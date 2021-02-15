@@ -27,7 +27,7 @@ This is mainly a result of the technology stack that we are using (see details b
 ### Database UML diagram
 The following diagram shows how the data is sorted in the api's database.
 
-![UML Diagram](doc_images/api_uml.png)
+![UML Diagram](doc_images/api_uml2.png)
 - *Movies* is the collection of all movies in the dataset.
 - *Movie* is a single movie in the dataset. A movie has multiple actors and directors.
 - *People* all the people that have worked on movies according to the database.
@@ -48,6 +48,8 @@ The motivation behind using this stack is because this stack allows for quick de
 Additional some group members had already worked with MERN and could guide the others to learn the stack.
 A neat feature of the MERN stack is that it uses javascript for everything, 
 meaning we didn't have to switch between different programming languages.
+Other advantages of MERN are that it is very good in terms of UI rendering and performance, and all technologies involved are open-source. 
+We could have chosen to use the MEAN stack instead of the MERN stack, since they are very similar. However, in our case there are some advantages to using MERN (with React) compared to MEAN (with Angular). Most importantly, Angular has a steeper learing curve than React, and React offers better documentation. Because of this it seemed better to choose the MERN stack, since some of our group didn't really have experience with web development at all, and others were already more experienced with MERN.
 
 ## Running 
 ### Developer Running
