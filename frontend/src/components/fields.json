@@ -4,7 +4,7 @@
   {"name": "year", "prompt": "Year: "},
   {"name": "users_rating", "prompt": "User Rating: "},
   {"name": "votes", "prompt": "Votes: "},
-  {"name": "metascore", "prompt": "Meta score: "},
+  {"name": "meta_score", "prompt": "Meta score: "},
   {"name": "img_url", "prompt": "Image Url: "},
   {"name": "countries", "prompt": "Countries (separated by comma): "},
   {"name": "languages", "prompt": "Languages (separated by comma): "},

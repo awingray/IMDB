@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 
 class PersonTable extends Component {
-
     formatPerson({name, dob}) {
         return (
             <tr>

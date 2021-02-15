@@ -1,17 +1,57 @@
-import React, {Component} from "react";
+import React from "react";
+import Table from "./table";
+import {Link} from "react-router-dom";
 
-class MovieTable extends Component {
+const BASE_URL = "http://localhost:4000/api/movies";
 
-    formatMovie({image_url, title, year, users_rating, votes}) {
+class MovieTable extends Table {
+    /**
+     * This function gets a movie search page from the backend.
+     * @param page The page in question.
+     * @return The page as a list of objects.
+     */
+    async getPage(page) {
+        const link = (this.props.search) ? "&" : "?";
+        const result = await fetch(BASE_URL + this.props.search + link + "page=" + page);
+        const response = await result.json();
+        return response["data"]["movies"];
+    }
+
+    /**
+     * This function formats the head of the table.
+     */
+    formatHead() {
         return (
-            <tr>
+            <React.Fragment>
+                <th/>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Rating</th>
+                <th>Votes</th>
+            </React.Fragment>
+        );
+    }
+
+    /**
+     * Function populates a row of the table with an Movie object.
+     * @param The movie to format.
+     * @return {JSX.Element} The formatted row of the table.
+     */
+    formatRow({movie_uri, image_url, title, year, users_rating, votes}) {
+        let movieRoute = "/movie-details/" + movie_uri.split("/").slice(-1)[0];
+        return (
+            <tr key={movie_uri}>
                 <td className="text-center">
-                    <div style={{height:75}}>
-                        <img className="h-100" src={image_url} alt={title}/>
+                    <div style={{height: 75}}>
+                        <Link to={movieRoute}>
+                            <img className="h-100" src={image_url} alt="missing"/>
+                        </Link>
                     </div>
                 </td>
                 <td className="align-middle">
-                    {title}
+                    <Link to={movieRoute} className="text-dark">
+                        {title}
+                    </Link>
                 </td>
                 <td className="align-middle">
                     {year}
@@ -23,29 +63,6 @@ class MovieTable extends Component {
                     {votes}
                 </td>
             </tr>
-        );
-    }
-
-    render() {
-        const {movies} = this.props;
-
-        return (
-            <div className="w-100 overflow-auto">
-                <table className="table table-striped">
-                    <thead>
-                    <tr>
-                        <th/>
-                        <th>Title</th>
-                        <th>Year</th>
-                        <th>Rating</th>
-                        <th>Votes</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {movies.map(this.formatMovie)}
-                    </tbody>
-                </table>
-            </div>
         );
     }
 }

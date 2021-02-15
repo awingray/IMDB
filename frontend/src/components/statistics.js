@@ -4,7 +4,7 @@ import {Line} from 'react-chartjs-2';
 
 Chart.defaults.global.legend.display = false;
 
-class StatsComponent extends Component {
+class Statistics extends Component {
     render() {
         const {visualization, mean, median, mode, std} = this.props.response.data;
         const {distribution} = visualization;
@@ -37,4 +37,4 @@ class StatsComponent extends Component {
     }
 }
 
-export default StatsComponent;
+export default Statistics;
