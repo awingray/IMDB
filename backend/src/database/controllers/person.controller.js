@@ -4,12 +4,11 @@ const successCode = require("../config/success_codes");
 const errorCode = require("../config/error_codes");
 
 // Model to use in mongoose database
-const Person = require("../models/person.model.js");
+const Actor = require("../models/actor.model");
+const Director = require("../models/director.model");
 
 // Formatter used to format json responses
 const formatter = require("../../helpers/formatter");
-
-const Actor = require("../models/actor.model");
 
 // Validation used to check user input
 const personValidation = require("../validation/person.validation");
@@ -50,7 +49,7 @@ exports.searchActors = async function (req, res) {
         console.log("request", actors);
         let result = await formatter.formatActors(actors, req.query);
         console.log("result", result);
-        apiResponse.sendSuccess(res, successCode.search, result);
+        apiResponse.sendSuccess(req, res, successCode.search, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -79,7 +78,7 @@ exports.actorDetails = async function (req, res) {
         validation.path(req, personValidation.idSchema);
         let actor = await getActor(req.params);
         let result = await formatter.formatActorDetails(actor);
-        apiResponse.sendSuccess(res, successCode.get, result);
+        apiResponse.sendSuccess(req, res, successCode.get, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -104,7 +103,7 @@ async function getDirectorList({page=0, perPage = 10, name, sort = 'name', order
     let filters = {};
     if (name) filters.name= {$regex: name};
     try{
-        return await Person.find(filters).limit(Number(perPage)).skip(perPage * page).sort({[sort]: order});
+        return await Director.find(filters).limit(Number(perPage)).skip(perPage * page).sort({[sort]: order});
     } catch (error){
         throw errorCode.makeError('DatabaseError', 'database query failed');
     }
@@ -121,7 +120,7 @@ exports.searchDirectors = async function (req, res) {
         validation.query(req, personValidation.filterSchema, paginationValidation.schema);
         let directors = await getDirectorList(req.query);
         let result = await formatter.formatDirectors(directors, req.query);
-        apiResponse.sendSuccess(res, successCode.search, result);
+        apiResponse.sendSuccess(req, res, successCode.search, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -134,7 +133,7 @@ exports.searchDirectors = async function (req, res) {
  * @return {Promise<void>} A promise to return all of the matching documents.
  */
 async function getDirector({id}) {
-    let director = await Person.findById(id);
+    let director = await Director.findById(id);
     if (!director) throw errorCode.makeError('PathError', 'movie doesn\'t exist');
     return director;
 }
@@ -150,7 +149,7 @@ exports.directorDetails = async function (req, res) {
         validation.path(req, personValidation.idSchema);
         let director = await getDirector(req.params);
         let result = await formatter.formatDirectorDetails(director);
-        apiResponse.sendSuccess(res, successCode.get, result);
+        apiResponse.sendSuccess(req, res, successCode.get, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }

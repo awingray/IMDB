@@ -112,11 +112,10 @@ function personFilterToQuery({name}) {
  * @return Formatted actor entry object.
  */
 async function formatActorEntry(actor) {
-    console.log("actor:", actor);
-    console.log("actorname:", actor.name);
+    console.log("actor:", actor.name);
     return {
         actor_uri: 'http://localhost:4000/api/actors/' + actor.id,
-        name: actor.name || ''
+        name: actor.name || '',
     };
 }
 

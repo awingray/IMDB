@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 
 const ActorSchema = new Schema ({
-    actors: String
+    name: String
 }).index({actors: 1});
 
 module.exports = mongoose.model('Actor', ActorSchema);

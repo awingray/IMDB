@@ -9,8 +9,6 @@ const Movie = require("../models/movie.model.js");
 // Formatter used to format json responses
 const formatter = require("../../helpers/formatter");
 
-const csvConverter = require("../../helpers/converter");
-
 // Validation used to check user input
 const movieValidation = require("../validation/movie.validation.js");
 const paginationValidation = require("../validation/pagination.validation.js");
@@ -56,17 +54,7 @@ exports.searchMovies = async function (req, res) {
         validation.query(req, movieValidation.filterSchema, paginationValidation.schema, movieValidation.sortSchema);
         let movies = await getMovieList(req.query);
         let result = await formatter.formatMovies(movies, req.query);
-        if (typeof req.query.file_type === "undefined" || req.query.file_type == "json"){
-            console.log("file_type:", req.query.file_type);
-            apiResponse.sendSuccess(res, successCode.search, result);
-        } else if (req.query.file_type == "csv") {
-            let csv = csvConverter.convert2Csv(result);
-            res.set("Content-Type", "text/csv");
-            apiResponse.sendSuccess(res, successCode.search, csv);
-        } else {
-            res.status(415);
-            throw errorCode.makeError("Unsupported Media Type", "Media type is not supported");
-        }
+        apiResponse.sendSuccess(req, res, successCode.search, result);
         //console.log("req", req);
         //  console.log("csv", csv);
         // console.log("result ",result);
@@ -82,7 +70,6 @@ exports.searchMovies = async function (req, res) {
  * @returns {Promise<*>} A promise to return all of the matching documents.
  */
 async function getMovie({id}) {
-    console.log("result ",result);
     let movie = await Movie.findById(id);
     if (!movie) throw errorCode.makeError('PathError', 'movie doesn\'t exist');
     return movie;
@@ -99,7 +86,7 @@ exports.movieDetails = async function (req, res) {
         validation.path(req, movieValidation.idSchema);
         let movie = await getMovie(req.params);
         let result = await formatter.formatMovieDetails(movie);
-        apiResponse.sendSuccess(res, successCode.get, result);
+        apiResponse.sendSuccess(req, res, successCode.get, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -128,7 +115,7 @@ exports.removeMovie = async function (req, res) {
         validation.path(req, movieValidation.idSchema);
         let movie = await deleteMovie(req.params);
         let result = await formatter.formatMovieDetails(movie);
-        apiResponse.sendSuccess(res, successCode.delete, result);
+        apiResponse.sendSuccess(req, res, successCode.delete, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -159,7 +146,7 @@ exports.editMovie = async function (req, res) {
         validation.body(req, movieValidation.infoMovieSchema);
         let movie = await updateMovie(req.params, req.body);
         let result = await formatter.formatMovieDetails(movie);
-        apiResponse.sendSuccess(res, successCode.update, result);
+        apiResponse.sendSuccess(req, res, successCode.update, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -192,7 +179,7 @@ exports.createMovie = async function (req, res) {
         validation.body(req, movieValidation.infoMovieSchema, movieValidation.titleMovieSchema);
         let movie = await addMovie(req.body);
         let result = await formatter.formatMovieDetails(movie);
-        apiResponse.sendSuccess(res, successCode.create, result);
+        apiResponse.sendSuccess(req, res, successCode.create, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
@@ -239,7 +226,7 @@ exports.computeStatistics = async function(req, res){
         validation.query(req, movieValidation.filterSchema);
         let distribution = await getDistribution(req.query);
         let result = await formatter.formatStatistics(distribution, req.query);
-        apiResponse.sendSuccess(res, successCode.computation, result);
+        apiResponse.sendSuccess(req, res, successCode.computation, result);
     } catch (error) {
         apiResponse.sendError(res, error);
     }
