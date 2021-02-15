@@ -24,12 +24,18 @@ class MoviePage extends Page {
     getLinks() {
         return {
             back: <Link className="text-secondary" to="/search-movie">{"< Search other movies"}</Link>,
-            forward: <Link className="text-warning" to={"/movie-details/" + this.props.match.params.id + "/edit"}>{"Edit information >"}</Link>
+            forward: <Link className="text-warning"
+                           to={"/movie-details/" + this.props.match.params.id + "/edit"}>{"Edit information >"}</Link>
         };
     }
 
     componentDidMount() {
-        fetch(BASE_URL + this.props.match.params.id).then(
+        fetch(BASE_URL + this.props.match.params.id, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(
             async (result) => {
                 this.setState({
                     loading: false,

@@ -12,7 +12,12 @@ class MovieTable extends Table {
      */
     async getPage(page) {
         const link = (this.props.search) ? "&" : "?";
-        const result = await fetch(BASE_URL + this.props.search + link + "page=" + page);
+        const result = await fetch(BASE_URL + this.props.search + link + "page=" + page, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
         const response = await result.json();
         return response["data"]["movies"];
     }

@@ -14,7 +14,12 @@ class MovieUpdatePage extends Page {
     };
 
     componentDidMount() {
-        fetch(BASE_URL + this.props.match.params.id).then(
+        fetch(BASE_URL + this.props.match.params.id, {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                'Accept': 'application/json',
+            }
+        }).then(
             async (result) => {
                 this.setState({
                     loading: false,
@@ -80,7 +85,8 @@ class MovieUpdatePage extends Page {
             method: 'PUT',
             body: this.formatBody(this.state.movie.data),
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                'Accept': 'application/json',
             }
         }).then(res => res.json()).then(
             res => {
@@ -92,6 +98,7 @@ class MovieUpdatePage extends Page {
 
     handleDelete = () => {
         fetch(BASE_URL + this.props.match.params.id, {
+            headers: {'Accept': 'application/json'},
             method: 'DELETE'
         }).then(res => res.json()).then(
             res => {

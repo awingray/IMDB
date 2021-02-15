@@ -82,6 +82,7 @@ class MovieAddPage extends Page {
             method: 'POST',
             body: this.formatBody(this.state.movie),
             headers: {
+                'Accept': 'application/json',
                 "Content-type": "application/json; charset=UTF-8"
             }
         }).then(res => res.json()).then(

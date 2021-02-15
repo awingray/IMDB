@@ -11,7 +11,7 @@ const csvConverter = require("../helpers/converter");
  */
 function sendSuccess(req, res, {status, message}, result) {
     // if no type file or JSON is requested, JSON is used
-    if(req.header("accept") === "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" || req.header("accept") === "application/json"){
+    if(!req.header("accept") || req.header("accept") === "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8" || req.header("accept") === "application/json"){
     } else if (req.header("accept") === "text/csv"){
         let csv = csvConverter.convert2Csv(result); // Result is converted to JSON
         result = csv;

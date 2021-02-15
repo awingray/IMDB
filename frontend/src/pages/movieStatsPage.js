@@ -16,7 +16,12 @@ class MovieStatsPage extends Page {
     };
 
     componentDidMount() {
-        fetch(BASE_URL + this.props.location.search).then(
+        fetch(BASE_URL + this.props.location.search,  {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(
             async (result) => {
                 this.setState({
                     loading: false,
