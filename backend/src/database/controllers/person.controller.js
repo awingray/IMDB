@@ -46,9 +46,7 @@ exports.searchActors = async function (req, res) {
     try {
         validation.query(req, personValidation.filterSchema, paginationValidation.schema);
         let actors = await getActorList(req.query);
-        console.log("request", actors);
         let result = await formatter.formatActors(actors, req.query);
-        console.log("result", result);
         apiResponse.sendSuccess(req, res, successCode.search, result);
     } catch (error) {
         apiResponse.sendError(res, error);

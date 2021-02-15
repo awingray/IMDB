@@ -7,7 +7,11 @@ const Movie = require('./movie.model.js');
  * For simplicity sake they are both sorted as person.
  */
 const PersonSchema = new Schema({
-    name: String,
+    name: {
+        type: String,
+        unique: true,
+        uppercase: true
+    },
     gender: String,
     dob: Date,
     bio: String,
