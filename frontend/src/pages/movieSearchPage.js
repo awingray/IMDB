@@ -1,160 +1,112 @@
 import React from "react";
 import Form from 'react-bootstrap/Form';
 import MovieTable from "../components/movieTable";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import Page from "./page";
 
 class MovieSearchPage extends Page {
     state = {
-        loading: true,
-        response: {
-            "_self_uri": "http://localhost:4000/api/movies",
-            "statistics_uri": "http://localhost:4000/api/movies/statistics",
-            "movies": [
-                {
-                    "movie_uri": "http://localhost:4000/api/movies/5fca76124e2e9e0d181f0264",
-                    "title": "#1 Serial Killer",
-                    "year": 2013,
-                    "users_rating": 5.5,
-                    "votes": "43",
-                    "image_url": "https://m.media-amazon.com/images/M/MV5BODk3NjU5NzU4N15BMl5BanBnXkFtZTgwODQwMDk4NTE@._V1_UY268_CR5,0,182,268_AL__QL50.jpg"
-                },
-                {
-                    "movie_uri": "http://localhost:4000/api/movies/5fca76934e2e9e0d181f8596",
-                    "title": "#5",
-                    "year": 2013,
-                    "users_rating": 6.6,
-                    "votes": "7",
-                    "image_url": "https://m.media-amazon.com/images/M/MV5BMTQ2MDg0ODAwMV5BMl5BanBnXkFtZTgwNTQ1NjkxMDE@._V1_UY268_CR8,0,182,268_AL__QL50.jpg"
-                },
-                {
-                    "movie_uri": "http://localhost:4000/api/movies/5fca76934e2e9e0d181f85a3",
-                    "title": "#50Fathers",
-                    "year": 2015,
-                    "users_rating": 4.6,
-                    "votes": "5",
-                    "image_url": "https://m.media-amazon.com/images/M/MV5BMGFlOGUyMjgtYTc4Yi00MGJjLWFiOTMtOWQ4Y2JkMmY1OGEzXkEyXkFqcGdeQXVyNjYxNTk1OTM@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
-                },
-                {
-                    "movie_uri": "http://localhost:4000/api/movies/5fca75c64e2e9e0d181ead32",
-                    "title": "#Captured",
-                    "year": 2017,
-                    "users_rating": 5.1,
-                    "votes": "758",
-                    "image_url": "https://m.media-amazon.com/images/M/MV5BZDBmYTEwZWMtNzc2OC00N2M5LWJmNGEtNDI5OTZiM2RmMDJkXkEyXkFqcGdeQXVyNTM3MDMyMDQ@._V1_UY268_CR9,0,182,268_AL__QL50.jpg"
-                },
-                {
-                    "movie_uri": "http://localhost:4000/api/movies/5fca75ca4e2e9e0d181eb405",
-                    "title": "#DigitalLivesMatter",
-                    "year": 2016,
-                    "users_rating": 6.1,
-                    "votes": "23",
-                    "image_url": "https://m.media-amazon.com/images/M/MV5BMzY0MDc2MjMtY2FmYy00Njk2LWE3ZmQtYmU1Yjg0YmRkOTkxXkEyXkFqcGdeQXVyNTIwMzAzMw@@._V1_UY268_CR9,0,182,268_AL__QL50.jpg"
-                },
-                {
-                    "movie_uri": "http://localhost:4000/api/movies/5fca75e54e2e9e0d181ed3ff",
-                    "title": "#Enough",
-                    "year": 2015,
-                    "users_rating": 2.9,
-                    "votes": "8",
-                    "image_url": "https://m.media-amazon.com/images/M/MV5BNGIxYTcxZGMtZWRhZC00MDVkLWJkODYtYzU2NDIyY2U0ODZlXkEyXkFqcGdeQXVyNjQwNzUwNTE@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
-                },
-                {
-                    "movie_uri": "http://localhost:4000/api/movies/5fca765b4e2e9e0d181f4180",
-                    "title": "#Followme",
-                    "year": 2019,
-                    "users_rating": 3.7,
-                    "votes": "531",
-                    "image_url": "https://m.media-amazon.com/images/M/MV5BMDVjOWI0ZjMtZjk1Yy00N2MxLWJhYWUtZjViYTYyYTY5ZDJlXkEyXkFqcGdeQXVyNjMwMjM3ODE@._V1_UY268_CR9,0,182,268_AL__QL50.jpg"
-                },
-                {
-                    "movie_uri": "http://localhost:4000/api/movies/5fca76644e2e9e0d181f5247",
-                    "title": "#Horror",
-                    "year": 2015,
-                    "users_rating": 3,
-                    "votes": "3,333",
-                    "image_url": "https://m.media-amazon.com/images/M/MV5BMjM5ODg2NjU2Nl5BMl5BanBnXkFtZTgwMTY0NTIwMDI@._V1_UY268_CR2,0,182,268_AL__QL50.jpg"
-                },
-                {
-                    "movie_uri": "http://localhost:4000/api/movies/5fca75d44e2e9e0d181ebd33",
-                    "title": "#Like",
-                    "year": 2019,
-                    "users_rating": 7.1,
-                    "votes": "11",
-                    "image_url": "https://m.media-amazon.com/images/M/MV5BNmI5NzdkYmEtZDIzNi00MjIwLTgwYzYtZTllODY3YWI4NGIxXkEyXkFqcGdeQXVyNjUxMjc1OTM@._V1_UX182_CR0,0,182,268_AL__QL50.jpg"
-                },
-                {
-                    "movie_uri": "http://localhost:4000/api/movies/5fca75c64e2e9e0d181eadc5",
-                    "title": "#Lucky Number",
-                    "year": 2015,
-                    "users_rating": 5,
-                    "votes": "444",
-                    "image_url": "https://m.media-amazon.com/images/M/MV5BM2E3ODc4YjAtMGMxMi00YWU1LWEzZTMtZTNiZGQ5NDkzNDZhXkEyXkFqcGdeQXVyMDc3ODUxNg@@._V1_UY268_CR12,0,182,268_AL__QL50.jpg"
-                }
-            ]
-        },
-        error: false,
-        page: 0,
+        title : "",
+        actor : "",
+        director : "",
+        genre : "",
+        year : "",
+        sort : "",
+        order : "",
+    }
+
+    /**
+     * This function gets query params from the url.
+     */
+    componentDidMount() {
+        let search = this.props.location.search.split("&");
+        let params = {};
+        for (let i = 0; i < search.length; i++) {
+            if (search[i].match(/title=(.*)/)) params.title = search[i].match(/title=(.*)/)[1];
+            if (search[i].match(/actor=(.*)/)) params.actor = search[i].match(/actor=(.*)/)[1];
+            if (search[i].match(/director=(.*)/)) params.director = search[i].match(/director=(.*)/)[1];
+            if (search[i].match(/genre=(.*)/)) params.genre = search[i].match(/genre=(.*)/)[1];
+            if (search[i].match(/year=(.*)/)) params.year = search[i].match(/year=(.*)/)[1];
+            if (search[i].match(/sort=(.*)/)) params.sort = search[i].match(/sort=(.*)/)[1];
+            if (search[i].match(/order=(.*)/)) params.order = search[i].match(/order=(.*)/)[1];
+        }
+        this.setState(params);
     }
 
     renderTitle() {
         return <h3 className="text-center"> Search Movie </h3>;
     }
 
-    getLinks() {
-        return {forward: <Link className="text-warning" to="/search-movie/statistics">{"See statistics >"}</Link>};
+    getLinks = () => {
+        return {forward: <Link className="text-warning" to={"/search-movie/statistics" + this.props.history.location.search}>{"See statistics >"}</Link>};
+    }
+
+    getSearch = () => {
+        let params = this.state;
+        let search = "/search-movie?";
+        for (let key in params) {
+            if (params[key]) search += key + "=" + params[key] + "&";
+        }
+        this.props.history.push(search.slice(0,-1));
+        window.location.reload(false);
     }
 
     renderContent() {
+        let search = this.props.history.location.search;
+        let {title, actor, director, genre, year, sort, order} = this.state;
+
         return (
             <React.Fragment>
                 <Form>
                     <div className="row mb-4">
                         <div className="col-sm">
-                            <Form.Control type="text" placeholder="title"/>
+                            <Form.Control type="text" placeholder="title" value={title}
+                                          onChange={(event) => this.setState({title: event.target.value})}
+                            />
                         </div>
                         <div className="col-2">
-                            <Form.Control className="bg-primary text-white" type="submit" value="Search"/>
+                            <button className="btn btn-primary btn-block" type="button" onClick={this.getSearch}>Search</button>
                         </div>
                     </div>
                     <div className="row mb-4">
                         <div className="col">
-                            <Form.Control type="text" placeholder="actor"/>
+                            <Form.Control type="text" placeholder="actor" value={actor}
+                                          onChange={(event) => this.setState({actor: event.target.value})}
+                            />
                         </div>
                         <div className="col">
-                            <Form.Control type="text" placeholder="director"/>
+                            <Form.Control type="text" placeholder="director" value={director}
+                                          onChange={(event) => this.setState({director: event.target.value})}
+                            />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col">
-                            <Form.Control type="text" placeholder="genre"/>
+                            <Form.Control type="text" placeholder="genre" value={genre}
+                                          onChange={(event) => this.setState({genre: event.target.value})}
+                            />
                         </div>
                         <div className="col">
-                            <Form.Control type="text" placeholder="year"/>
+                            <Form.Control type="text" placeholder="year" value={year}
+                                          onChange={(event) => this.setState({year: event.target.value})}
+                            />
                         </div>
                         <div className="col">
-                            <Form.Control type="text" placeholder="sort by"/>
+                            <Form.Control type="text" placeholder="sort by" value={sort}
+                                          onChange={(event) => this.setState({sort: event.target.value})}
+                            />
                         </div>
                         <div className="col">
-                            <Form.Control type="text" placeholder="order"/>
+                            <Form.Control type="text" placeholder="order" value={order}
+                                          onChange={(event) => this.setState({order: event.target.value})}
+                            />
                         </div>
                     </div>
                 </Form>
-                <div className="m-4">
-                    <MovieTable movies={this.state.response.movies}/>
-                </div>
-                <div className="text-center row">
-                    <div className="col-sm text-right">
-                        <button type="button" className="btn  btn-secondary disabled"> previous</button>
-                    </div>
-                    <div className="col-sm align-middle"><p> {this.state.page} </p></div>
-                    <div className="col-sm text-left">
-                        <button type="button" className="btn btn-secondary"> next</button>
-                    </div>
-                </div>
+                <MovieTable search={search}/>
             </React.Fragment>
         );
     }
 }
 
-export default MovieSearchPage;
+export default withRouter(MovieSearchPage);

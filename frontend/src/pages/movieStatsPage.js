@@ -1,11 +1,11 @@
 import React from "react";
 import Statistics from "../components/statistics";
 import Loading from "../components/loading";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
 import Page from "./page";
 
 
-const BASE_URL = 'http://localhost:4000/api/movies/statistics?';
+const BASE_URL = 'http://localhost:4000/api/movies/statistics';
 
 
 class MovieStatsPage extends Page {
@@ -16,7 +16,7 @@ class MovieStatsPage extends Page {
     };
 
     componentDidMount() {
-        fetch(BASE_URL).then(
+        fetch(BASE_URL + this.props.location.search).then(
             async (result) => {
                 this.setState({
                     loading: false,
@@ -48,10 +48,10 @@ class MovieStatsPage extends Page {
 
     getLinks() {
         return {
-            back: (<Link className="text-secondary" to="/search-movie">{"< Back to search"}</Link>),
+            back: (<Link className="text-secondary" to={"/search-movie" + this.props.location.search}>{"< Back to search"}</Link>),
             forward: undefined
         };
     }
 }
 
-export default MovieStatsPage;
+export default withRouter(MovieStatsPage);

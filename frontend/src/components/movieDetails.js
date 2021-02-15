@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PersonTable from "./personTable";
 
 class MovieDetails extends Component {
     render() {
@@ -31,18 +30,10 @@ class MovieDetails extends Component {
                         {countries[0]}
                     </li>
                     <li className="list-group-item"><b>Actors: </b>
-                        <PersonTable people=
-                                         {actors.slice(2, -2).split("', '").map((x) => {
-                                             return {name: x, dob: "?"}
-                                         })}
-                        />
+                        {actors}
                     </li>
                     <li className="list-group-item"><b>Directed by: </b>
-                        <PersonTable people=
-                                         {directors[0].slice(2, -2).split("', '").map((x) => {
-                                             return {name: x, dob: "?"}
-                                         })}
-                        />
+                        {directors[0]}
                     </li>
                 </ul>
             </React.Fragment>
