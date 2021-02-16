@@ -41,7 +41,7 @@ class MovieSearchPage extends Page {
         return {forward: <Link className="text-warning" to={"/search-movie/statistics" + this.props.history.location.search}>{"See statistics >"}</Link>};
     }
 
-    getSearch = () => {
+    handleSearch = () => {
         let params = this.state;
         let search = "/search-movie?";
         for (let key in params) {
@@ -65,7 +65,7 @@ class MovieSearchPage extends Page {
                             />
                         </div>
                         <div className="col-2">
-                            <button className="btn btn-primary btn-block" type="button" onClick={this.getSearch}>Search</button>
+                            <button className="btn btn-primary btn-block" type="button" onClick={this.handleSearch}>Search</button>
                         </div>
                     </div>
                     <div className="row mb-4">

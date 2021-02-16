@@ -172,7 +172,7 @@ async function formatDirectorEntry(director) {
 async function formatDirectors(directors, filters) {
     return {
         _self_uri : 'http://localhost:4000/api/directors' + personFilterToQuery(filters),
-        actors: await Promise.all(directors.map(formatDirectorEntry))
+        directors: await Promise.all(directors.map(formatDirectorEntry))
     }
 }
 
