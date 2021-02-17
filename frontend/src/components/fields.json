@@ -1,0 +1,18 @@
+[
+  {"name": "title", "prompt": "Title: "},
+  {"name": "rating", "prompt": "Rating: "},
+  {"name": "year", "prompt": "Year: "},
+  {"name": "users_rating", "prompt": "User Rating: "},
+  {"name": "votes", "prompt": "Votes: "},
+  {"name": "meta_score", "prompt": "Meta score: "},
+  {"name": "img_url", "prompt": "Image Url: "},
+  {"name": "countries", "prompt": "Countries (separated by comma): "},
+  {"name": "languages", "prompt": "Languages (separated by comma): "},
+  {"name": "actors", "prompt": "Actors (separated by comma): "},
+  {"name": "genre", "prompt": "Genre (separated by comma): "},
+  {"name": "tagline", "prompt": "Tagline: "},
+  {"name": "description", "prompt": "Description: "},
+  {"name": "directors", "prompt": "Directors (separated by comma): "},
+  {"name": "runtime", "prompt": "Runtime in minutes: "},
+  {"name": "imdb_url", "prompt": "IMDB url: "}
+]
