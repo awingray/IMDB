@@ -3,7 +3,6 @@
   * Attie Hendriks 
   * Awin Gray
   * Niek Loke
-  * ~~Eduard Sabo~~
 
 This project is assignment for the course Web Engineering.
 The goal of this project is to create a basic restful api based on the
