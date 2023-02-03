@@ -1,6 +1,6 @@
 import React from "react";
 import {Link, withRouter} from "react-router-dom";
-import MovieTable from "../components/movieTable";
+// import MovieTable from "../components/movieTable";
 import Page from "./page";
 import Loading from "../components/loading";
 

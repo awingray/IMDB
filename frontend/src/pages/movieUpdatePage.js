@@ -39,7 +39,7 @@ class MovieUpdatePage extends Page {
                     <div className="col">
                         <Form.Control type="text" placeholder={name} value={movie[name]}
                                       onChange={(event => {
-                                          let newMovie = {... movie};
+                                          let newMovie = {...movie};
                                           newMovie[name] = event.target.value;
                                           this.setState({movie: {data: newMovie}});
                                       })}
